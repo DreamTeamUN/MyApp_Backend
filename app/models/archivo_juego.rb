@@ -1,0 +1,2 @@
+class ArchivoJuego < ApplicationRecord
+end

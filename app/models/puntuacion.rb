@@ -1,0 +1,2 @@
+class Puntuacion < ApplicationRecord
+end

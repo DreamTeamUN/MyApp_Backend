@@ -1,0 +1,2 @@
+class RegistroActividad < ApplicationRecord
+end

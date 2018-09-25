@@ -1,0 +1,2 @@
+class NivelAcceso < ApplicationRecord
+end
