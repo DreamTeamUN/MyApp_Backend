@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :entradas
   resources :nivel_accesos
   resources :progresos
   resources :docentes
