@@ -12,13 +12,15 @@
 
 ActiveRecord::Schema.define(version: 2018_09_27_145355) do
 
-  create_table "archivo_juegos", force: :cascade do |t|
-    t.integer "frase_id", null: false
+  create_table "archivo_juegos", id: false, force: :cascade do |t|
+    t.integer "tipo_juego_id", null: false
     t.integer "archivo_id", null: false
+    t.integer "frase_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["archivo_id"], name: "index_archivo_juegos_on_archivo_id"
     t.index ["frase_id"], name: "index_archivo_juegos_on_frase_id"
+    t.index ["tipo_juego_id"], name: "index_archivo_juegos_on_tipo_juego_id"
   end
 
   create_table "archivos", force: :cascade do |t|
@@ -38,7 +40,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_145355) do
     t.index ["docente_programa_id"], name: "index_aulas_on_docente_programa_id"
   end
 
-  create_table "docente_programas", force: :cascade do |t|
+  create_table "docente_programas", id: false, force: :cascade do |t|
     t.integer "docente_id", null: false
     t.integer "programa_id", null: false
     t.datetime "created_at", null: false
@@ -47,7 +49,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_145355) do
     t.index ["programa_id"], name: "index_docente_programas_on_programa_id"
   end
 
-  create_table "docentes", force: :cascade do |t|
+  create_table "docentes", id: false, force: :cascade do |t|
     t.integer "usuario_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -71,7 +73,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_145355) do
     t.index ["usuario_id"], name: "index_entradas_on_usuario_id"
   end
 
-  create_table "estudiante_aulas", force: :cascade do |t|
+  create_table "estudiante_aulas", id: false, force: :cascade do |t|
     t.integer "aula_id", null: false
     t.integer "estudiante_id", null: false
     t.datetime "created_at", null: false
@@ -80,7 +82,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_145355) do
     t.index ["estudiante_id"], name: "index_estudiante_aulas_on_estudiante_id"
   end
 
-  create_table "estudiantes", force: :cascade do |t|
+  create_table "estudiantes", id: false, force: :cascade do |t|
     t.integer "usuario_id", null: false
     t.integer "tutor_id", null: false
     t.datetime "created_at", null: false
@@ -91,7 +93,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_145355) do
 
   create_table "frase_pnls", force: :cascade do |t|
     t.string "frase", null: false
-    t.integer "tipo_usuario_id", null: false
+    t.integer "tipo_usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tipo_usuario_id"], name: "index_frase_pnls_on_tipo_usuario_id"
@@ -125,7 +127,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_145355) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "progresos", force: :cascade do |t|
+  create_table "progresos", id: false, force: :cascade do |t|
     t.integer "repeticion_completada", default: 0, null: false
     t.integer "estudiante_id", null: false
     t.integer "leccion_id", null: false
@@ -135,7 +137,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_145355) do
     t.index ["leccion_id"], name: "index_progresos_on_leccion_id"
   end
 
-  create_table "puntuacions", force: :cascade do |t|
+  create_table "puntuacions", id: false, force: :cascade do |t|
     t.date "fecha", null: false
     t.integer "puntuacion_obtenida", null: false
     t.integer "tipo_juego_id", null: false
@@ -178,7 +180,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_145355) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tutors", force: :cascade do |t|
+  create_table "tutors", id: false, force: :cascade do |t|
     t.integer "usuario_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

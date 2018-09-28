@@ -1,6 +1,6 @@
 class CreateTutors < ActiveRecord::Migration[5.2]
   def change
-    create_table :tutors do |t|
+    create_table :tutors, id: false do |t|
 
       t.references :usuario , foreign_key: true, null: false
 

@@ -1,6 +1,6 @@
 class CreateProgresos < ActiveRecord::Migration[5.2]
   def change
-    create_table :progresos do |t|
+    create_table :progresos, id: false do |t|
       t.integer :repeticion_completada, null: false, default: 0
 
       t.references :estudiante , foreign_key: true, null: false
