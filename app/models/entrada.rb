@@ -7,5 +7,6 @@ class Entrada < ApplicationRecord
   belongs_to :usuario
 
   #Validaciones
-  
+  validates :ramificacion, numericality: { greater_than_or_equal_to: 0 }
+  validates :ramificacion, numericality: { smaller_than_or_equal_to: 3 }
 end

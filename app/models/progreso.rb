@@ -5,6 +5,6 @@ class Progreso < ApplicationRecord
   belongs_to :estudiante
 
   #Validaciones
-  validates :repeticion_completada, numericality: { :greater_than_or_equal_to: 0 }
+  validates :repeticion_completada, numericality: { greater_than_or_equal_to: 0 }
 
 end

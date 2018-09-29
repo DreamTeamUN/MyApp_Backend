@@ -6,6 +6,6 @@ class Puntuacion < ApplicationRecord
   belongs_to :leccion
 
   #Validaciones
-  validates :puntuacion_obtenida, numericality: { :greater_than_or_equal_to: 0 }
+  validates :puntuacion_obtenida, numericality: { greater_than_or_equal_to: 0 }
 
 end
