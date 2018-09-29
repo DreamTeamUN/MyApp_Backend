@@ -1,4 +1,9 @@
 class Docente < ApplicationRecord
-  has_one_and_belongs_to_many :docente
+
+  #Relaciones
+  has_and_belongs_to_many :programa
   belongs_to :usuario
+
+  #Validaciones
+
 end
