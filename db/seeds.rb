@@ -5,8 +5,34 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 array_archivos = ["archivo","imagen","audio"]
 array_extension = ["mp3","html","png","jpg","jpeg","pdf"]
+1.times do
+  TipoUsuario.create(nombre: "Tutor")
+  TipoUsuario.create(nombre: "Docente")
+  TipoUsuario.create(nombre: "Estudiante")
+end
+1.times do
+  Programa.create(nombre: "Lectura")
+end
+
+
+1.times do
+  TipoActividad.create(nombre: "Login", descripcion: "Hacer Login en la app")
+
+  TipoActividad.create(nombre: "Logout", descripcion: "Hacer Logout en la app")
+
+  TipoActividad.create(nombre: "Jugar", descripcion: "Jugar juego de retroalimentacion de las sesiones")
+
+  TipoActividad.create(nombre: "Inicio Leccion", descripcion: "empezar la leccion semanal")
+
+  TipoActividad.create(nombre: "crear foro", descripcion: "postear en foro")
+end
+
+
+
+
 30.times do
   ext = array_extension.sample
   nomb = Faker::Cat.name
@@ -78,7 +104,7 @@ end
 30.times do
   ArchivoJuego.create(
     tipo_juego_id: Faker::Number.within(1..3),
-    archivo_id: Faker::Number.unique.within(2..31),
+    archivo_id: Faker::Number.unique.within(1..30),
     frase_id: Faker::Number.within(1..30)
   )
 end
@@ -102,21 +128,21 @@ end
 
 10.times do
   DocentePrograma.create(
-    docente_id: Faker::Number.unique.within(1..10),
+    docente_id: Faker::Number.unique.within(1..11),
     programa_id: 1
   )
 end
 
 10.times do
   Aula.create(
-    docente_programa_id: Faker::Number.unique.within(1..10)
+    docente_programa_id: Faker::Number.unique.within(1..11)
   )
 end
 
 10.times do
   EstudianteAula.create(
-    aula_id: Faker::Number.within(1..10),
-    estudiante_id: Faker::Number.within(1..10)
+    aula_id: Faker::Number.within(1..11),
+    estudiante_id: Faker::Number.within(1..11)
   )
 end
 
@@ -127,6 +153,31 @@ end
     nombre: Faker::ChuckNorris.unique.fact
   )
 end
+1.times do
+  o = Entrada.new(
+    publicado: Faker::Boolean.boolean,
+    abierto: Faker::Boolean.boolean,
+    ramificacion: Faker::Number.within(1..3),
+    archivo_id: Faker::Number.unique.within(2..31),
+    nivel_acceso_id:Faker::Number.within(1..10),
+    usuario_id: Faker::Number.within(1..30),
+
+  )
+  o.save!(:validate => false)
+
+  Entrada.create(
+    publicado: Faker::Boolean.boolean,
+    abierto: Faker::Boolean.boolean,
+    ramificacion: Faker::Number.within(1..3),
+    archivo_id: Faker::Number.unique.within(2..31),
+    nivel_acceso_id:Faker::Number.within(1..10),
+    usuario_id: Faker::Number.within(1..30),
+    entrada_id: 1
+  )
+end
+
+
+
 10.times do
   Entrada.create(
     publicado: Faker::Boolean.boolean,
