@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_usuario: 1
+  nombre: MyString
+  correo: MyString
+  fecha_nacimiento: 2018-09-25
+  fecha_registro: 2018-09-25
+  foto_perfil: 1
+
+two:
+  tipo_usuario: 1
+  nombre: MyString
+  correo: MyString
+  fecha_nacimiento: 2018-09-25
+  fecha_registro: 2018-09-25
+  foto_perfil: 1

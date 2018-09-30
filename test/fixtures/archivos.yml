@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  tipo_archivo: MyString
+  nombre_archivo: MyString
+  extension: MyString
+  ruta_archivo: MyString
+
+two:
+  nombre: MyString
+  tipo_archivo: MyString
+  nombre_archivo: MyString
+  extension: MyString
+  ruta_archivo: MyString

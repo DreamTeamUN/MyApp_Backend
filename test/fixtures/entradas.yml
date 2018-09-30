@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha_publicacion: 2018-09-27 09:53:55
+  publicado: false
+  abierto: false
+  ramificacion: 1
+
+two:
+  fecha_publicacion: 2018-09-27 09:53:55
+  publicado: false
+  abierto: false
+  ramificacion: 1
