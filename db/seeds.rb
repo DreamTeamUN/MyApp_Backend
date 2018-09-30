@@ -24,8 +24,8 @@ end
     nombre: Faker::OnePiece.character,
     correo: Faker::Internet.unique.email,
     fecha_nacimiento: Faker::Date.birthday(3, 65),
-    archivo_id: Faker::Number.unique.within(2..31),
-    tipo_usuario_id: Faker::Number.unique.within(1..3)
+    archivo_id: Faker::Number.unique.within(1..30),
+    tipo_usuario_id: Faker::Number.within(1..3)
   )
 end
 
@@ -127,14 +127,14 @@ end
     nombre: Faker::ChuckNorris.unique.fact
   )
 end
-#10.times do
-#  Entrada.create(
-#    publicado: Faker::Boolean.boolean,
-#    abierto: Faker::Boolean.boolean,
-#    ramificacion: Faker::Number.within(1..3),
-#    archivo_id: Faker::Number.unique.within(2..31),
-#    nivel_acceso_id:Faker::Number.within(1..10),
-#    usuario_id: Faker::Number.within(1..30),
-#    entrada_id: Faker::Number.within(1..2),
-#  )
-#end
+10.times do
+  Entrada.create(
+    publicado: Faker::Boolean.boolean,
+    abierto: Faker::Boolean.boolean,
+    ramificacion: Faker::Number.within(1..3),
+    archivo_id: Faker::Number.unique.within(2..31),
+    nivel_acceso_id:Faker::Number.within(1..10),
+    usuario_id: Faker::Number.within(1..30),
+    entrada_id: Faker::Number.within(1..2),
+  )
+end
