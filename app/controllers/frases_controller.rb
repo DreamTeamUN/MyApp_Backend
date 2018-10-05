@@ -46,6 +46,6 @@ class FrasesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def frase_params
-      params.require(:frase).permit(:frase)
+      params.require(:frase).permit(:frase, :leccion_id)
     end
 end

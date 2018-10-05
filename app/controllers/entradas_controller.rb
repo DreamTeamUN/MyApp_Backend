@@ -46,6 +46,6 @@ class EntradasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def entrada_params
-      params.require(:entrada).permit(:fecha_publicacion, :publicado, :abierto, :ramificacion)
+      params.require(:entrada).permit(:publicado, :abierto, :ramificacion, :archivo_id, :entrada_id, :nivel_acceso_id, :usuario_id)
     end
 end

@@ -46,6 +46,6 @@ class AulasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def aula_params
-      params.fetch(:aula, {})
+      params.require(:aula).permit(:docente_programa_id)
     end
 end

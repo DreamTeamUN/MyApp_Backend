@@ -46,6 +46,6 @@ class RegistroActividadsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def registro_actividad_params
-      params.require(:registro_actividad).permit(:fecha)
+      params.require(:registro_actividad).permit(:usuario_id, :tipo_actividad_id)
     end
 end

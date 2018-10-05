@@ -46,6 +46,6 @@ class FrasePnlsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def frase_pnl_params
-      params.require(:frase_pnl).permit(:frase)
+      params.require(:frase_pnl).permit(:frase, :tipo_usuario_id)
     end
 end

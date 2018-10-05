@@ -46,6 +46,6 @@ class ProgramasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def programa_params
-      params.fetch(:programa, {})
+      params.require(:programa).permit(:nombre)
     end
 end

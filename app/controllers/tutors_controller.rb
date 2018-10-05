@@ -46,6 +46,6 @@ class TutorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tutor_params
-      params.fetch(:tutor, {})
+      params.require(:tutor).permit(:usuario_id)
     end
 end
