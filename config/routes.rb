@@ -1,79 +1,104 @@
 Rails.application.routes.draw do
 
   #get 'tipo/:id', to: 'tipo_usuarios#show' #Para crear rutas personalizadas
+  #index, create, show, update, destroy
 
-  resources :usuarios do
-    resources :entradas
+  resources :tipo_actividads, only: [:index, :show, :update]
+  resources :nivel_accesos, only: [:index, :show]
+  resources :frase_pnls, only: :index
+
+  resources :usuarios, except: :create do
+
+    resources :tipo_actividads, only: [] do
+      resources :registro_actividads, except: [:destroy, :update]
+    end
+
+    resources :nivel_accesos, :entradas, only: [] do
+      resources :entradas, shallow: true
+    end
+
   end
 
-  resources :usuarios do
-      resources :registro_actividads
-  end
+  resources :tipo_usuarios, only: [:index, :show] do
+    resources :frase_pnls, shallow: true
 
-  resources :nivel_accesos do
-    resources :entradas
+    resources :usuarios, only: [:create, :index]
   end
 
   resources :estudiantes do
-      resources :progresos
+
+    resources :leccions, only: [] do
+      resources :progresos, except: :destroy
+    end
+
   end
 
-  resources :estudiantes do
-      resources :puntuacions
-  end
+  resources :programas, only: [:index, :show] do
 
-  resources :leccions do
-      resources :progresos
-  end
-
-  resources :tutors do
-      resources :estudiantes
-  end
-
-  resources :docentes do
-      resources :aulas
-  end
-
-  resources :programas do
-      resources :aulas
-  end
-
-  resources :programas do
     resources :leccions
+
+    resources :docentes, only: [] do
+      resources :docente_programas, except: :update
+    end
+
   end
 
-  resources :leccions do
-    resources :frases
+  resources :leccions, only: [] do
+    resources :frases, shallow: true
   end
 
-  resources :leccions do
-    resources :puntuacions
+  resources :docente_programas, only: [] do
+    resources :aulas, shallow: true
   end
 
-  resources :tipo_juegos do
-    resources :puntuacions
+  resources :docentes, only: [:index, :show]
+
+  resources :tutors, only: [:index, :show] do
+    resources :estudiantes, only: :create
   end
 
-  resources :tipo_juego do
-    resources :archivo_juegos
+  resources :estudiantes, only: [:index, :show] do
+
+    resources :aulas, only: [] do
+      resources :estudiante_aulas, except: :update
+    end
+
   end
 
-  resources :tipo_actividads do
-      resources :registro_actividads
+  resources :tipo_juegos, only: [:index, :show, :update] do
+    resources :puntuacions, except: :destroy, shallow: true
   end
 
-  resources :tipo_usuarios do
-    resources :frase_pnls
+  resources :archivos do
+    resources :tipo_juegos, only: [] do
+      resources :frase, only: [] do
+        resources :archivo_juegos, shallow: true
+      end
+    end
   end
 
-  resources :tipo_usuarios do
-    resources :usuarios
-  end
+  #resources :entradas ##
+  #resources :nivel_accesos, only: [:index, :show] ##
+  #resources :progresos, except: :destroy ##
+  #resources :docentes, only: [:index, :show] ##
+  #resources :tutors, only: [:index, :show] ##
+  #resources :estudiantes, only: [:index, :show] ##
+  #resources :estudiante_aulas, except: :update ##
+  #resources :aulas ##
+  #resources :docente_programas, except: :update ##
+  #resources :programas, only: [:index, :show] ##
+  #resources :leccions ##
+  #resources :frases ##
+  #resources :puntuacions, except: :destroy ##
+  #resources :tipo_juegos, only: [:index, :show, :update] ##
+  #resources :archivo_juegos ##
+  #resources :archivos ##
+  #resources :tipo_actividads, only: [:index, :show, :update] ##
+  #resources :registro_actividads, except: [:destroy, :update] ##
+  #resources :frase_pnls ##
+  #resources :tipo_usuarios, only: [:index, :show] ##
+  #resources :usuarios ##
 
-  resources :docente_programas
-  resources :estudiante_aulas
-  resources :archivos #Solo get y create
-  resources :frase_pnls
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
