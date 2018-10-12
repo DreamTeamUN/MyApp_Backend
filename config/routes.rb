@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-
+  resources :users
+  mount Knock::Engine => "/knock"
+  post 'usuario_token' => 'usuario_token#create'
   #index, create, show, update, destroy
 
   resources :tipo_actividads, only: [:index, :show, :update]

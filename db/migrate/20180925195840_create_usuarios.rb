@@ -9,10 +9,10 @@ class CreateUsuarios < ActiveRecord::Migration[5.2]
       t.date :fecha_nacimiento
 
       t.references :tipo_usuario, foreign_key: true, null:false
-      t.references :archivo , foreign_key: true, default: -1 #Archivo para la foto de perfil
+      t.references :archivo , foreign_key: true, default: 0 #Archivo para la foto de perfil
 
       t.timestamps
-      
+
     end
   end
 end
