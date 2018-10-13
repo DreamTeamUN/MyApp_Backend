@@ -3,7 +3,11 @@ class EntradasController < ApplicationController
 
   # GET /entradas
   def index
-    @entradas = Entrada.all
+    if params[:usuario_id]
+      @entradas = Entrada.where(usuario_id: params[:usuario_id])
+    else
+      @entradas = Entrada.where(nivel_acceso_id: params[:nivel_acceso_id])
+    end
 
     render json: @entradas
   end
@@ -15,13 +19,32 @@ class EntradasController < ApplicationController
 
   # POST /entradas
   def create
-    @entrada = Entrada.new(entrada_params)
 
-    if @entrada.save
-      render json: @entrada, status: :created, location: @entrada
+    @archivo = Archivo.new()
+    @archivo.nombre = "Entrada\##{Entrada.last.id + 1}"
+    @archivo.extension = "html"
+    @archivo.ruta = "/"
+
+    if @archivo.save
+
+      @entrada = Entrada.new()
+      @entrada.usuario_id = params[:usuario_id]
+      @entrada.entrada_id = params[:entrada_id]
+      @entrada.ramificacion = Entrada.find(params[:entrada_id]).ramificacion + 1
+      @entrada.nivel_acceso_id = 0
+      @entrada.archivo_id = @archivo.id
+
+      if @entrada.save
+        render json: @entrada, status: :created, location: @entrada
+      else
+        Archivo.destroy(@archivo.id)
+        render json: @entrada.errors, status: :unprocessable_entity
+      end
+
     else
-      render json: @entrada.errors, status: :unprocessable_entity
+      render json: @archivo.errors, status: :unprocessable_entity
     end
+
   end
 
   # PATCH/PUT /entradas/1
@@ -35,6 +58,7 @@ class EntradasController < ApplicationController
 
   # DELETE /entradas/1
   def destroy
+    Archivo.find(@entrada.archivo_id).destroy
     @entrada.destroy
   end
 
@@ -46,6 +70,6 @@ class EntradasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def entrada_params
-      params.require(:entrada).permit(:publicado, :abierto, :ramificacion, :archivo_id, :entrada_id, :nivel_acceso_id, :usuario_id)
+      params.require(:entrada).permit(:publicado, :abierto, :nivel_acceso_id)
     end
 end

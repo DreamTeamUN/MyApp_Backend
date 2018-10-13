@@ -3,6 +3,7 @@
                             tipo_actividad GET    /tipo_actividads/:id(.:format)                                                                    tipo_actividads#show
                                            PATCH  /tipo_actividads/:id(.:format)                                                                    tipo_actividads#update
                                            PUT    /tipo_actividads/:id(.:format)                                                                    tipo_actividads#update
+                     nivel_acceso_entradas GET    /nivel_accesos/:nivel_acceso_id/entradas(.:format)                                                entradas#index
                              nivel_accesos GET    /nivel_accesos(.:format)                                                                          nivel_accesos#index
                               nivel_acceso GET    /nivel_accesos/:id(.:format)                                                                      nivel_accesos#show
                                 frase_pnls GET    /frase_pnls(.:format)                                                                             frase_pnls#index
@@ -41,18 +42,17 @@
 usuario_tipo_actividad_registro_actividads GET    /usuarios/:usuario_id/tipo_actividads/:tipo_actividad_id/registro_actividads(.:format)            registro_actividads#index
                                            POST   /usuarios/:usuario_id/tipo_actividads/:tipo_actividad_id/registro_actividads(.:format)            registro_actividads#create
                         registro_actividad GET    /registro_actividads/:id(.:format)                                                                registro_actividads#show
-             usuario_nivel_acceso_entradas GET    /usuarios/:usuario_id/nivel_accesos/:nivel_acceso_id/entradas(.:format)                           entradas#index
-                                           POST   /usuarios/:usuario_id/nivel_accesos/:nivel_acceso_id/entradas(.:format)                           entradas#create
+             usuario_nivel_acceso_entradas POST   /usuarios/:usuario_id/nivel_accesos/:nivel_acceso_id/entradas(.:format)                           entradas#create
                                    entrada GET    /entradas/:id(.:format)                                                                           entradas#show
                                            PATCH  /entradas/:id(.:format)                                                                           entradas#update
                                            PUT    /entradas/:id(.:format)                                                                           entradas#update
                                            DELETE /entradas/:id(.:format)                                                                           entradas#destroy
-                  usuario_entrada_entradas GET    /usuarios/:usuario_id/entradas/:entrada_id/entradas(.:format)                                     entradas#index
-                                           POST   /usuarios/:usuario_id/entradas/:entrada_id/entradas(.:format)                                     entradas#create
+                  usuario_entrada_entradas POST   /usuarios/:usuario_id/entradas/:entrada_id/entradas(.:format)                                     entradas#create
                                            GET    /entradas/:id(.:format)                                                                           entradas#show
                                            PATCH  /entradas/:id(.:format)                                                                           entradas#update
                                            PUT    /entradas/:id(.:format)                                                                           entradas#update
                                            DELETE /entradas/:id(.:format)                                                                           entradas#destroy
+                          usuario_entradas GET    /usuarios/:usuario_id/entradas(.:format)                                                          entradas#index
                                   usuarios GET    /usuarios(.:format)                                                                               usuarios#index
                                    usuario GET    /usuarios/:id(.:format)                                                                           usuarios#show
                                            PATCH  /usuarios/:id(.:format)                                                                           usuarios#update

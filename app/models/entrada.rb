@@ -7,6 +7,5 @@ class Entrada < ApplicationRecord
   belongs_to :usuario
 
   #Validaciones
-  validates :ramificacion, numericality: { greater_than_or_equal_to: 0 }
-  validates :ramificacion, numericality: { smaller_than_or_equal_to: 3 }
+  validates :ramificacion, inclusion: { in: [0, 1, 2, 3], message: "%{value} no es un valor de ramificacion valido"}
 end

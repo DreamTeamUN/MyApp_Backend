@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   #index, create, show, update, destroy
 
   resources :tipo_actividads, only: [:index, :show, :update]
-  resources :nivel_accesos, only: [:index, :show]
+  resources :nivel_accesos, only: [:index, :show] do
+    resources :entradas, only: [:index]
+  end
   resources :frase_pnls, only: :index
 
 
@@ -38,8 +40,10 @@ Rails.application.routes.draw do
     end
 
     resources :nivel_accesos, :entradas, only: [] do
-      resources :entradas, shallow: true
+      resources :entradas, except: [:index], shallow: true
     end
+
+    resources :entradas, only: [:index]
 
   end
 
