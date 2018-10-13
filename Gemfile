@@ -45,4 +45,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+#gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
+# Comenta al inicio de cada modelo el esquema correspondiente en la base de datos
+gem 'annotate'
+
+#Crea metodos para la paginacion de multiples resultados
+gem 'will_paginate'

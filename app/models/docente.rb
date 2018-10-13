@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: docentes
+#
+#  id         :integer          not null, primary key
+#  usuario_id :integer          not null
+#
+
 class Docente < ApplicationRecord
 
   #Relaciones
