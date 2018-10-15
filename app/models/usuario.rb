@@ -29,8 +29,9 @@ class Usuario < ApplicationRecord
   has_many :tipo_actividad , through: :registro_actividad
 
   #Validaciones
-  validates :user, length: { minimum: 3, maximum: 45 }
+  validates :user, length: { minimum: 3, maximum: 45 }, uniqueness: {scope: :user, message: "El nombre de usuario ya existe"}
   validates :nombre, length: { minimum: 3, maximum: 45 }
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "Correo invalido" }
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "Correo invalido" },
+    uniqueness: {scope: :email, message: "El correo ya esta registrado"}
 
 end
