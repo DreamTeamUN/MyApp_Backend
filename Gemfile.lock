@@ -152,14 +152,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  annotate
-  bootsnap (>= 1.1.0)
-  byebug
   active_model_serializers (~> 0.10.0)
+  annotate
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   byebug
-  faker!
   knock
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.11)

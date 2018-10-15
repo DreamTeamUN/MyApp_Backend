@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :users
-  mount Knock::Engine => "/knock"
-  post 'usuario_token' => 'usuario_token#create'
-  
 ##Archivo-Juego
 
   resources :archivos, only: [] do
@@ -198,6 +194,11 @@ Rails.application.routes.draw do
   end
 
   resources :usuarios, except: [:create]
+
+##Rutas para validacion
+
+  mount Knock::Engine => "/knock"
+  post 'usuario_token' => 'usuario_token#create'
 
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
