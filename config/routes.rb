@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :users
+  mount Knock::Engine => "/knock"
+  post 'usuario_token' => 'usuario_token#create'
+  
 ##Archivo-Juego
 
   resources :archivos, only: [] do
