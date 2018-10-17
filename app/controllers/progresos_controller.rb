@@ -46,6 +46,6 @@ class ProgresosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def progreso_params
-      params.require(:progreso).permit(:repeticion_completada)
+      params.require(:progreso).permit(:repeticion_completada, :estudiante_id, :leccion_id)
     end
 end

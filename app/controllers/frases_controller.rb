@@ -3,7 +3,7 @@ class FrasesController < ApplicationController
 
   # GET /frases
   def index
-    @frases = Frase.all
+    @frases = Frase.by_leccion(params[:leccion_id])
 
     render json: @frases
   end
@@ -46,6 +46,6 @@ class FrasesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def frase_params
-      params.require(:frase).permit(:frase)
+      params.require(:frase).permit(:frase, :leccion_id)
     end
 end

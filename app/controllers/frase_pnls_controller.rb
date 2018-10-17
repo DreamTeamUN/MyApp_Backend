@@ -3,7 +3,7 @@ class FrasePnlsController < ApplicationController
 
   # GET /frase_pnls
   def index
-    @frase_pnls = FrasePnl.all
+    @frase_pnls = FrasePnl.by_tipo_usuario(params[:tipo_usuario_id])
 
     render json: @frase_pnls
   end

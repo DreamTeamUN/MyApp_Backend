@@ -15,7 +15,9 @@ class AulasController < ApplicationController
 
   # POST /aulas
   def create
-    @aula = Aula.new(aula_params)
+    @aula = Aula.new()
+
+    @aula.docente_programa_id = params[:docente_programa_id]
 
     if @aula.save
       render json: @aula, status: :created, location: @aula
@@ -46,6 +48,6 @@ class AulasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def aula_params
-      params.fetch(:aula, {})
+      params.require(:aula).permit()
     end
 end

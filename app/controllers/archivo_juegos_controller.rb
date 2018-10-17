@@ -46,6 +46,6 @@ class ArchivoJuegosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def archivo_juego_params
-      params.fetch(:archivo_juego, {})
+      params.require(:archivo_juego).permit(:tipo_juego_id, :archivo_id, :frase_id)
     end
 end

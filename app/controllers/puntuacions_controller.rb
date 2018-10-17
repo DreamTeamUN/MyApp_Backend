@@ -46,6 +46,6 @@ class PuntuacionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def puntuacion_params
-      params.require(:puntuacion).permit(:fecha, :puntuacion_obtenida)
+      params.require(:puntuacion).permit(:puntuacion_obtenida, :tipo_juego_id, :estudiante_id, :leccion_id)
     end
 end

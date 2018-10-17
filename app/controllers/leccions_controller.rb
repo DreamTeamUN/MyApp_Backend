@@ -46,6 +46,6 @@ class LeccionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def leccion_params
-      params.require(:leccion).permit(:semana)
+      params.require(:leccion).permit(:semana, :programa_id)
     end
 end

@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: nivel_accesos
+#
+#  id     :integer          not null, primary key
+#  nombre :string           not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

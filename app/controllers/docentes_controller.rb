@@ -46,6 +46,6 @@ class DocentesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def docente_params
-      params.fetch(:docente, {})
+      params.require(:docente).params(:usuario_id)
     end
 end

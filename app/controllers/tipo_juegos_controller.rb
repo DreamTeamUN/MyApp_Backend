@@ -46,6 +46,6 @@ class TipoJuegosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tipo_juego_params
-      params.require(:tipo_juego).permit(:nombre_juego, :descripcion)
+      params.require(:tipo_juego).permit(:nombre, :descripcion)
     end
 end

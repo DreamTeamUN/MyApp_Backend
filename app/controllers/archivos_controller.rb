@@ -46,6 +46,6 @@ class ArchivosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def archivo_params
-      params.require(:archivo).permit(:nombre, :tipo_archivo, :nombre_archivo, :extension, :ruta_archivo)
+      params.require(:archivo).permit(:nombre, :tipo_archivo, :extension, :ruta)
     end
 end
