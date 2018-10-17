@@ -3,7 +3,7 @@ class FrasesController < ApplicationController
 
   # GET /frases
   def index
-    @frases = Frase.all
+    @frases = Frase.by_leccion(params[:leccion_id])
 
     render json: @frases
   end

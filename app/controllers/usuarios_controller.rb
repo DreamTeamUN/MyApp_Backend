@@ -1,9 +1,10 @@
 class UsuariosController < ApplicationController
+  before_action :authenticate_usuario, only: [:index,:show, :update, :destroy]
   before_action :set_usuario, only: [:show, :update, :destroy]
 
   # GET /usuarios
   def index
-    @usuarios = Usuario.all
+    @usuarios  = current_usuario
 
     render json: @usuarios
   end
@@ -16,6 +17,8 @@ class UsuariosController < ApplicationController
   # POST /usuarios
   def create
     @usuario = Usuario.new(usuario_params)
+    @usuario.tipo_usuario_id = params[:tipo_usuario_id]
+    @usuario.archivo_id = 0
 
     if @usuario.save
       render json: @usuario, status: :created, location: @usuario
@@ -46,6 +49,6 @@ class UsuariosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def usuario_params
-      params.require(:usuario).permit(:user, :password, :nombre, :correo, :fecha_nacimiento, :tipo_usuario_id, :archivo_id)
+      params.require(:usuario).permit(:user, :password, :nombre, :email, :fecha_nacimiento)
     end
 end

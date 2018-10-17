@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: estudiantes
+#
+#  id         :integer          not null, primary key
+#  usuario_id :integer          not null
+#  tutor_id   :integer          not null
+#
+
 class Estudiante < ApplicationRecord
 
   #Relaciones
