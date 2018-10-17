@@ -23,6 +23,10 @@
   TipoActividad.create(nombre: "Eliminar estudiante", descripcion: "Elimina a un estudiante de un aula a la que esta inscrito")
   TipoActividad.create(nombre: "Eliminar Aula", descripcion: "Elimina un aula existente")
 
+  TipoJuego.create(nombre: "Enlaces", descripcion: "Enlazar palabras con su respectiva imagen")
+  TipoJuego.create(nombre: "Parejas Imagen", descripcion: "Loteria con las palabras y sus imagenes")
+  TipoJuego.create(nombre: "Parejas Sonido", descripcion: "Loteria con las palabras y su verbalizacion")
+
   Archivo.create(id: 0, nombre: "default", tipo_archivo: "imagen", extension: "png", ruta: "/")
 
   NivelAcceso.create(id: 0, nombre: "PUBLICO")
@@ -40,6 +44,20 @@
     usuario_id: 0
   )
   o.save!(:validate => false)
+
+
+  ##Solo para facilitar la creacion de aulas (temp)
+  Usuario.create(user: "docente1", password:"docente1", password_confirmation:"docente1",
+          nombre: "sistema", email:"docente1@localhost.com", tipo_usuario_id: 2)
+
+  Usuario.create(user: "docente2", password:"docente2", password_confirmation:"docente2",
+          nombre: "sistema", email:"docente2@localhost.com", tipo_usuario_id: 2)
+
+  Docente.create(usuario_id: 1)
+  Docente.create(usuario_id: 2)
+
+  DocentePrograma.create(docente_id: 1, programa_id: 1)
+  DocentePrograma.create(docente_id: 2, programa_id: 1)
 
 end
 
