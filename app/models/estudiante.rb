@@ -2,9 +2,11 @@
 #
 # Table name: estudiantes
 #
-#  id         :integer          not null, primary key
-#  usuario_id :integer          not null
-#  tutor_id   :integer          not null
+#  id               :integer          not null, primary key
+#  tutor_id         :integer          not null
+#  nombre           :string
+#  fecha_nacimiento :date
+#  archivo_id       :integer          default(0)
 #
 
 class Estudiante < ApplicationRecord
@@ -13,9 +15,10 @@ class Estudiante < ApplicationRecord
   has_and_belongs_to_many :aula
   has_many :progreso
   belongs_to :tutor
-  belongs_to :usuario
   has_many :puntuacion
+  has_one :archivo
 
   #Validaciones
-  
+  validates :nombre, length: { minimum: 3, maximum: 45 }, presence: true
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_09_084955) do
+ActiveRecord::Schema.define(version: 2018_10_20_164315) do
 
   create_table "archivo_juegos", force: :cascade do |t|
     t.integer "tipo_juego_id", null: false
@@ -69,10 +69,12 @@ ActiveRecord::Schema.define(version: 2018_10_09_084955) do
   end
 
   create_table "estudiantes", force: :cascade do |t|
-    t.integer "usuario_id", null: false
     t.integer "tutor_id", null: false
+    t.string "nombre"
+    t.date "fecha_nacimiento"
+    t.integer "archivo_id", default: 0
+    t.index ["archivo_id"], name: "index_estudiantes_on_archivo_id"
     t.index ["tutor_id"], name: "index_estudiantes_on_tutor_id"
-    t.index ["usuario_id"], name: "index_estudiantes_on_usuario_id"
   end
 
   create_table "frase_pnls", force: :cascade do |t|

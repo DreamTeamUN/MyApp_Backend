@@ -6,7 +6,6 @@
   TipoUsuario.create(id: 0, nombre: "Sistema")
   TipoUsuario.create(nombre: "Tutor")
   TipoUsuario.create(nombre: "Docente")
-  TipoUsuario.create(nombre: "Estudiante")
 
   Programa.create(nombre: "Lectura")
 

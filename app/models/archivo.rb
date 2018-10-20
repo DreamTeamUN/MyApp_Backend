@@ -16,6 +16,7 @@ class Archivo < ApplicationRecord
   has_one :juego, through: :archivo_juego
   has_one :entradas
   has_many :usuario
+  has_many :estudiante
 
   #Validaciones
   validates :nombre, length: { maximum: 45, minimum: 3 }
