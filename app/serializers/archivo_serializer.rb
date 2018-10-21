@@ -16,4 +16,5 @@ class ArchivoSerializer < ActiveModel::Serializer
   has_one :juego, through: :archivo_juego
   has_one :entradas
   has_many :usuario
+  has_many :estudiante
 end

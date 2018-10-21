@@ -24,8 +24,6 @@ class UsuariosController < ApplicationController
 
     if @usuario.save
 
-      text = ""
-
       case @usuario.tipo_usuario_id
 
       when 1 #Tutor
@@ -37,11 +35,6 @@ class UsuariosController < ApplicationController
 
         @trigger = Docente.new(usuario_id: @usuario.id)
         text = "docente"
-
-      when 3 #Estudiante
-
-        @trigger = Estudiante.new()
-        text = "estudiante"
 
       end
 
@@ -79,6 +72,6 @@ class UsuariosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def usuario_params
-      params.require(:usuario).permit(:user, :password_digest, :nombre, :email, :fecha_nacimiento)
+      params.require(:usuario).permit(:user, :password, :nombre, :email, :fecha_nacimiento)
     end
 end

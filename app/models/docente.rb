@@ -13,5 +13,6 @@ class Docente < ApplicationRecord
   belongs_to :usuario
 
   #Validaciones
+  validates :usuario_id, uniqueness: true
 
 end

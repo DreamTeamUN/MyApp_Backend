@@ -16,7 +16,7 @@ class Estudiante < ApplicationRecord
   has_many :progreso
   belongs_to :tutor
   has_many :puntuacion
-  has_one :archivo
+  belongs_to :archivo
 
   #Validaciones
   validates :nombre, length: { minimum: 3, maximum: 45 }, presence: true

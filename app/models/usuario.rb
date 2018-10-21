@@ -19,8 +19,8 @@ class Usuario < ApplicationRecord
   has_secure_password
 
   #Relaciones
-  has_one :tutor
-  has_one :docente
+  has_one :tutor,   dependent: :destroy
+  has_one :docente, dependent: :destroy
   has_many :entrada
   belongs_to :archivo
   belongs_to :tipo_usuario
