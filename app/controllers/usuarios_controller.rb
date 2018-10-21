@@ -39,6 +39,7 @@ class UsuariosController < ApplicationController
       end
 
       if @trigger.save
+        WelcomeMailer.with(usuario: @usuario).welcome_email.deliver
         render json: {"usuario": @usuario,"#{text}": @trigger}, status: :created, location: @usuario
       else
         @usuario.destroy
