@@ -17,11 +17,34 @@ class UsuariosController < ApplicationController
   # POST /usuarios
   def create
     @usuario = Usuario.new(usuario_params)
-    @usuario.tipo_usuario_id = params[:tipo_usuario_id]
-    @usuario.archivo_id = 0
+
+    if params[:tipo_usuario_id] != 0
+      @usuario.tipo_usuario_id = params[:tipo_usuario_id]
+    end
 
     if @usuario.save
-      render json: @usuario, status: :created, location: @usuario
+
+      case @usuario.tipo_usuario_id
+
+      when 1 #Tutor
+
+        @trigger = Tutor.new(usuario_id: @usuario.id)
+        text = "tutor"
+
+      when 2 #Docente
+
+        @trigger = Docente.new(usuario_id: @usuario.id)
+        text = "docente"
+
+      end
+
+      if @trigger.save
+        render json: {"usuario": @usuario,"#{text}": @trigger}, status: :created, location: @usuario
+      else
+        @usuario.destroy
+        render json: @trigger.errors, status: :unprocessable_entity
+      end
+
     else
       render json: @usuario.errors, status: :unprocessable_entity
     end

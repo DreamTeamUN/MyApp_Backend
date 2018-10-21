@@ -2,9 +2,11 @@
 #
 # Table name: estudiantes
 #
-#  id         :integer          not null, primary key
-#  usuario_id :integer          not null
-#  tutor_id   :integer          not null
+#  id               :integer          not null, primary key
+#  tutor_id         :integer          not null
+#  nombre           :string
+#  fecha_nacimiento :date
+#  archivo_id       :integer          default(0)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

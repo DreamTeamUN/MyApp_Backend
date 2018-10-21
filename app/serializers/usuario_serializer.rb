@@ -19,7 +19,6 @@ class UsuarioSerializer < ActiveModel::Serializer
 
   has_one :tutor
   has_one :docente
-  has_one :estudiante
   has_many :entrada
   has_many :registro_actividad
   has_many :tipo_actividad , through: :registro_actividad
