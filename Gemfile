@@ -61,3 +61,6 @@ gem 'annotate'
 
 #Crea metodos para la paginacion de multiples resultados
 gem 'will_paginate'
+
+#Para definir variables de entorno ENV
+gem 'figaro'
