@@ -1,0 +1,112 @@
+                                    Prefix Verb   URI Pattern                                                                                       Controller#Action
+   archivo_tipo_juego_frase_archivo_juegos GET    /archivos/:archivo_id/tipo_juegos/:tipo_juego_id/frase/:frase_id/archivo_juegos(.:format)         archivo_juegos#index
+                                           POST   /archivos/:archivo_id/tipo_juegos/:tipo_juego_id/frase/:frase_id/archivo_juegos(.:format)         archivo_juegos#create
+                             archivo_juego GET    /archivo_juegos/:id(.:format)                                                                     archivo_juegos#show
+                                           PATCH  /archivo_juegos/:id(.:format)                                                                     archivo_juegos#update
+                                           PUT    /archivo_juegos/:id(.:format)                                                                     archivo_juegos#update
+                                           DELETE /archivo_juegos/:id(.:format)                                                                     archivo_juegos#destroy
+                                  archivos GET    /archivos(.:format)                                                                               archivos#index
+                                           POST   /archivos(.:format)                                                                               archivos#create
+                                   archivo GET    /archivos/:id(.:format)                                                                           archivos#show
+                                           PATCH  /archivos/:id(.:format)                                                                           archivos#update
+                                           PUT    /archivos/:id(.:format)                                                                           archivos#update
+                                           DELETE /archivos/:id(.:format)                                                                           archivos#destroy
+                    docente_programa_aulas GET    /docente_programas/:docente_programa_id/aulas(.:format)                                           aulas#index
+                                           POST   /docente_programas/:docente_programa_id/aulas(.:format)                                           aulas#create
+                                      aula GET    /aulas/:id(.:format)                                                                              aulas#show
+                                           PATCH  /aulas/:id(.:format)                                                                              aulas#update
+                                           PUT    /aulas/:id(.:format)                                                                              aulas#update
+                                           DELETE /aulas/:id(.:format)                                                                              aulas#destroy
+                 docente_docente_programas GET    /docentes/:docente_id/docente_programas(.:format)                                                 docente_programas#index
+                programa_docente_programas GET    /programas/:programa_id/docente_programas(.:format)                                               docente_programas#index
+        programa_docente_docente_programas POST   /programas/:programa_id/docentes/:docente_id/docente_programas(.:format)                          docente_programas#create
+                          docente_programa GET    /docente_programas/:id(.:format)                                                                  docente_programas#show
+                                           DELETE /docente_programas/:id(.:format)                                                                  docente_programas#destroy
+                                  docentes GET    /docentes(.:format)                                                                               docentes#index
+                                   docente GET    /docentes/:id(.:format)                                                                           docentes#show
+                  usuario_entrada_entradas POST   /usuarios/:usuario_id/entradas/:entrada_id/entradas(.:format)                                     entradas#create
+                          usuario_entradas GET    /usuarios/:usuario_id/entradas(.:format)                                                          entradas#index
+                     nivel_acceso_entradas GET    /nivel_accesos/:nivel_acceso_id/entradas(.:format)                                                entradas#index
+                                   entrada GET    /entradas/:id(.:format)                                                                           entradas#show
+                                           PATCH  /entradas/:id(.:format)                                                                           entradas#update
+                                           PUT    /entradas/:id(.:format)                                                                           entradas#update
+                                           DELETE /entradas/:id(.:format)                                                                           entradas#destroy
+                     aula_estudiante_aulas GET    /aulas/:aula_id/estudiante_aulas(.:format)                                                        estudiante_aulas#index
+               estudiante_estudiante_aulas GET    /estudiantes/:estudiante_id/estudiante_aulas(.:format)                                            estudiante_aulas#index
+          estudiante_aula_estudiante_aulas POST   /estudiantes/:estudiante_id/aulas/:aula_id/estudiante_aulas(.:format)                             estudiante_aulas#create
+                           estudiante_aula GET    /estudiante_aulas/:id(.:format)                                                                   estudiante_aulas#show
+                                           DELETE /estudiante_aulas/:id(.:format)                                                                   estudiante_aulas#destroy
+                         tutor_estudiantes GET    /tutors/:tutor_id/estudiantes(.:format)                                                           estudiantes#index
+                                           POST   /tutors/:tutor_id/estudiantes(.:format)                                                           estudiantes#create
+                               estudiantes GET    /estudiantes(.:format)                                                                            estudiantes#index
+                                estudiante GET    /estudiantes/:id(.:format)                                                                        estudiantes#show
+                   tipo_usuario_frase_pnls GET    /tipo_usuarios/:tipo_usuario_id/frase_pnls(.:format)                                              frase_pnls#index
+                                           POST   /tipo_usuarios/:tipo_usuario_id/frase_pnls(.:format)                                              frase_pnls#create
+                                frase_pnls GET    /frase_pnls(.:format)                                                                             frase_pnls#index
+                                 frase_pnl GET    /frase_pnls/:id(.:format)                                                                         frase_pnls#show
+                                           PATCH  /frase_pnls/:id(.:format)                                                                         frase_pnls#update
+                                           PUT    /frase_pnls/:id(.:format)                                                                         frase_pnls#update
+                                           DELETE /frase_pnls/:id(.:format)                                                                         frase_pnls#destroy
+                            leccion_frases GET    /leccions/:leccion_id/frases(.:format)                                                            frases#index
+                                           POST   /leccions/:leccion_id/frases(.:format)                                                            frases#create
+                                     frase GET    /frases/:id(.:format)                                                                             frases#show
+                                           PATCH  /frases/:id(.:format)                                                                             frases#update
+                                           PUT    /frases/:id(.:format)                                                                             frases#update
+                                           DELETE /frases/:id(.:format)                                                                             frases#destroy
+                         programa_leccions GET    /programas/:programa_id/leccions(.:format)                                                        leccions#index
+                                           POST   /programas/:programa_id/leccions(.:format)                                                        leccions#create
+                                   leccion GET    /leccions/:id(.:format)                                                                           leccions#show
+                                           PATCH  /leccions/:id(.:format)                                                                           leccions#update
+                                           PUT    /leccions/:id(.:format)                                                                           leccions#update
+                                           DELETE /leccions/:id(.:format)                                                                           leccions#destroy
+                             nivel_accesos GET    /nivel_accesos(.:format)                                                                          nivel_accesos#index
+                              nivel_acceso GET    /nivel_accesos/:id(.:format)                                                                      nivel_accesos#show
+                                 programas GET    /programas(.:format)                                                                              programas#index
+                                  programa GET    /programas/:id(.:format)                                                                          programas#show
+                         leccion_progresos GET    /leccions/:leccion_id/progresos(.:format)                                                         progresos#index
+              estudiante_leccion_progresos GET    /estudiantes/:estudiante_id/leccions/:leccion_id/progresos(.:format)                              progresos#index
+                                           POST   /estudiantes/:estudiante_id/leccions/:leccion_id/progresos(.:format)                              progresos#create
+                      estudiante_progresos GET    /estudiantes/:estudiante_id/progresos(.:format)                                                   progresos#index
+                                  progreso GET    /progresos/:id(.:format)                                                                          progresos#show
+                                           PATCH  /progresos/:id(.:format)                                                                          progresos#update
+                                           PUT    /progresos/:id(.:format)                                                                          progresos#update
+                    tipo_juego_puntuacions GET    /tipo_juegos/:tipo_juego_id/puntuacions(.:format)                                                 puntuacions#index
+                       leccion_puntuacions GET    /leccions/:leccion_id/puntuacions(.:format)                                                       puntuacions#index
+ estudiante_leccion_tipo_juego_puntuacions POST   /estudiantes/:estudiante_id/leccions/:leccion_id/tipo_juegos/:tipo_juego_id/puntuacions(.:format) puntuacions#create
+                    estudiante_puntuacions GET    /estudiantes/:estudiante_id/puntuacions(.:format)                                                 puntuacions#index
+                                puntuacion GET    /puntuacions/:id(.:format)                                                                        puntuacions#show
+                                           PATCH  /puntuacions/:id(.:format)                                                                        puntuacions#update
+                                           PUT    /puntuacions/:id(.:format)                                                                        puntuacions#update
+        tipo_actividad_registro_actividads GET    /tipo_actividads/:tipo_actividad_id/registro_actividads(.:format)                                 registro_actividads#index
+usuario_tipo_actividad_registro_actividads POST   /usuarios/:usuario_id/tipo_actividads/:tipo_actividad_id/registro_actividads(.:format)            registro_actividads#create
+               usuario_registro_actividads GET    /usuarios/:usuario_id/registro_actividads(.:format)                                               registro_actividads#index
+                        registro_actividad GET    /registro_actividads/:id(.:format)                                                                registro_actividads#show
+                           tipo_actividads GET    /tipo_actividads(.:format)                                                                        tipo_actividads#index
+                            tipo_actividad GET    /tipo_actividads/:id(.:format)                                                                    tipo_actividads#show
+                                           PATCH  /tipo_actividads/:id(.:format)                                                                    tipo_actividads#update
+                                           PUT    /tipo_actividads/:id(.:format)                                                                    tipo_actividads#update
+                               tipo_juegos GET    /tipo_juegos(.:format)                                                                            tipo_juegos#index
+                                tipo_juego GET    /tipo_juegos/:id(.:format)                                                                        tipo_juegos#show
+                                           PATCH  /tipo_juegos/:id(.:format)                                                                        tipo_juegos#update
+                                           PUT    /tipo_juegos/:id(.:format)                                                                        tipo_juegos#update
+                             tipo_usuarios GET    /tipo_usuarios(.:format)                                                                          tipo_usuarios#index
+                              tipo_usuario GET    /tipo_usuarios/:id(.:format)                                                                      tipo_usuarios#show
+                                    tutors GET    /tutors(.:format)                                                                                 tutors#index
+                                     tutor GET    /tutors/:id(.:format)                                                                             tutors#show
+                     tipo_usuario_usuarios GET    /tipo_usuarios/:tipo_usuario_id/usuarios(.:format)                                                usuarios#index
+                                           POST   /tipo_usuarios/:tipo_usuario_id/usuarios(.:format)                                                usuarios#create
+                                  usuarios GET    /usuarios(.:format)                                                                               usuarios#index
+                                   usuario GET    /usuarios/:id(.:format)                                                                           usuarios#show
+                                           PATCH  /usuarios/:id(.:format)                                                                           usuarios#update
+                                           PUT    /usuarios/:id(.:format)                                                                           usuarios#update
+                                           DELETE /usuarios/:id(.:format)                                                                           usuarios#destroy
+                                     knock        /knock                                                                                            Knock::Engine
+                             usuario_token POST   /usuario_token(.:format)                                                                          usuario_token#create
+                        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                                        active_storage/blobs#show
+                 rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format)          active_storage/representations#show
+                        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                                       active_storage/disk#show
+                 update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                               active_storage/disk#update
+                      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                                    active_storage/direct_uploads#create
+
+Routes for Knock::Engine:
+auth_token POST /auth_token(.:format) knock/auth_token#create
