@@ -195,6 +195,9 @@ Rails.application.routes.draw do
 
   resources :usuarios, except: [:create]
 
+##Ruta para probar mailer
+  get 'generate/:usuario_id' => 'pdf#generate'
+
 ##Rutas para validacion
 
   mount Knock::Engine => "/knock"
