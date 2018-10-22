@@ -195,8 +195,9 @@ Rails.application.routes.draw do
 
   resources :usuarios, except: [:create]
 
-##Ruta para probar mailer
-  get 'generate/:usuario_id' => 'pdf#generate'
+##Reporter Controllers
+
+  get 'usuarios/:usuario_id/report' => 'pdf#reporteUsuario'
 
 ##Rutas para validacion
 
