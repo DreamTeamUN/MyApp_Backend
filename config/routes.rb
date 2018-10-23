@@ -198,6 +198,7 @@ Rails.application.routes.draw do
 ##Reporter Controllers
 
   get 'usuarios/:usuario_id/report' => 'pdf#reporteUsuario'
+  get 'estudiantes/:estudiante_id/report' => 'pdf#reporteEstudiante'
 
 ##Rutas para validacion
 
