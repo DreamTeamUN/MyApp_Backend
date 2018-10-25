@@ -9,7 +9,8 @@
 class Docente < ApplicationRecord
 
   #Relaciones
-  has_and_belongs_to_many :programa
+  has_many :programa, through: :docente_programa
+  has_many :aula
   belongs_to :usuario
 
   #Validaciones
