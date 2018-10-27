@@ -9,8 +9,10 @@
 class Aula < ApplicationRecord
 
   #Relaciones
-  has_and_belongs_to_many :estudiante
-  belongs_to :docente_programa
+  has_many :estudiante_aula
+  has_many :estudiante, through: :estudiante_aula
+  belongs_to :docente
+  belongs_to :programa
 
   #Validaciones
 

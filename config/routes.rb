@@ -195,6 +195,11 @@ Rails.application.routes.draw do
 
   resources :usuarios, except: [:create]
 
+##Reporter Controllers
+
+  get 'usuarios/:usuario_id/report' => 'pdf#reporteUsuario'
+  get 'estudiantes/:estudiante_id/report' => 'pdf#reporteEstudiante'
+
 ##Rutas para validacion
 
   mount Knock::Engine => "/knock"
