@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_164315) do
+ActiveRecord::Schema.define(version: 2018_10_23_020355) do
 
   create_table "archivo_juegos", force: :cascade do |t|
     t.integer "tipo_juego_id", null: false
@@ -29,8 +29,11 @@ ActiveRecord::Schema.define(version: 2018_10_20_164315) do
   end
 
   create_table "aulas", force: :cascade do |t|
-    t.integer "docente_programa_id", null: false
-    t.index ["docente_programa_id"], name: "index_aulas_on_docente_programa_id"
+    t.integer "docente_id"
+    t.integer "programa_id"
+    t.index ["docente_id", "programa_id"], name: "index_aulas_on_docente_id_and_programa_id", unique: true
+    t.index ["docente_id"], name: "index_aulas_on_docente_id"
+    t.index ["programa_id"], name: "index_aulas_on_programa_id"
   end
 
   create_table "docente_programas", force: :cascade do |t|
@@ -55,6 +58,8 @@ ActiveRecord::Schema.define(version: 2018_10_20_164315) do
     t.integer "usuario_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "titulo"
+    t.string "resumen"
     t.index ["archivo_id"], name: "index_entradas_on_archivo_id"
     t.index ["entrada_id"], name: "index_entradas_on_entrada_id"
     t.index ["nivel_acceso_id"], name: "index_entradas_on_nivel_acceso_id"
@@ -73,6 +78,8 @@ ActiveRecord::Schema.define(version: 2018_10_20_164315) do
     t.string "nombre"
     t.date "fecha_nacimiento"
     t.integer "archivo_id", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["archivo_id"], name: "index_estudiantes_on_archivo_id"
     t.index ["tutor_id"], name: "index_estudiantes_on_tutor_id"
   end
@@ -130,6 +137,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_164315) do
     t.integer "tipo_actividad_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ip_origen"
     t.index ["tipo_actividad_id"], name: "index_registro_actividads_on_tipo_actividad_id"
     t.index ["usuario_id"], name: "index_registro_actividads_on_usuario_id"
   end
@@ -163,6 +171,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_164315) do
     t.integer "archivo_id", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "last_login"
     t.index ["archivo_id"], name: "index_usuarios_on_archivo_id"
     t.index ["tipo_usuario_id"], name: "index_usuarios_on_tipo_usuario_id"
   end
