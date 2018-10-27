@@ -12,6 +12,7 @@
 class Estudiante < ApplicationRecord
 
   #Relaciones
+  has_many :estudiante_aula
   has_many :aula, through: :estudiante_aula
   has_many :progreso
   belongs_to :tutor

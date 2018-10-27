@@ -28,25 +28,37 @@ class UsuarioReporter < Reporter
       case usuario.tipo_usuario_id
       when 1 #Tutor
 
-        text "Tiene #{usuario.tutor.estudiante.count} estudiantes registados"
+        estudiantes = usuario.tutor.estudiante
+        text "Tiene #{estudiantes.count} estudiantes registados"
         move_down @@fontsize
-        usuario.tutor.estudiante.each do |estudiante|
+        estudiantes.each do |estudiante|
           text "#{estudiante.nombre}", :indent_paragraphs => @@ident
         end
         move_down @@fontsize
 
-      when 2
+      when 2 #Docente
 
-        text "Las aulas que tiene a cargo son:"
+        aulas = usuario.docente.aula
+        text "Tiene #{aulas.count} aulas a cargo"
         move_down @@fontsize/2
-        DocentePrograma.where("docente_id == ?", usuario.docente.id).find_each do |relacion|
-          text "#{relacion.programa.nombre}: #{relacion.aula.count} aulas", :indent_paragraphs => @@ident
+        aulas.each do |aula|
+          text "Programa: #{aula.programa.nombre}, #{aula.estudiante.count} estudiantes", :indent_paragraphs => @@ident
         end
         move_down @@fontsize/2
 
       end
 
-      text "El usuario tiene #{usuario.entrada.count} entradas"
+      entradas = usuario.entrada
+      text "El usuario tiene #{entradas.count} entradas"
+      move_down @@fontsize
+
+      entradas.each do |entrada|
+        text "#{entrada.titulo}", :indent_paragraphs => @@ident
+        indent @@ident*1.5, @@ident*1.5 do #Para identar por ambos lados
+          text "#{entrada.resumen}"
+        end
+        move_down @@fontsize
+      end
 
     end
   end

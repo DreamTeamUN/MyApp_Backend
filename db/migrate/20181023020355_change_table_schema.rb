@@ -5,14 +5,21 @@ class ChangeTableSchema < ActiveRecord::Migration[5.2]
     change_table(:aulas) do |t|
       t.references :docente, foreign_key: true
       t.references :programa, foreign_key: true
-      t.index [:docente_id, :programa_id], unique: true
 
       t.remove_references :docente_programa
+    end
+
+    change_table(:docente_programas) do |t|
+      t.index [:docente_id, :programa_id], unique: true
     end
 
     change_table(:entradas) do |t|
       t.string :titulo
       t.string :resumen
+    end
+
+    change_table(:estudiante_aulas) do |t|
+      t.index [:aula_id, :estudiante_id], unique: true
     end
 
     change_table(:estudiantes) do |t|

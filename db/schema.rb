@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 2018_10_23_020355) do
   create_table "aulas", force: :cascade do |t|
     t.integer "docente_id"
     t.integer "programa_id"
-    t.index ["docente_id", "programa_id"], name: "index_aulas_on_docente_id_and_programa_id", unique: true
     t.index ["docente_id"], name: "index_aulas_on_docente_id"
     t.index ["programa_id"], name: "index_aulas_on_programa_id"
   end
@@ -39,6 +38,7 @@ ActiveRecord::Schema.define(version: 2018_10_23_020355) do
   create_table "docente_programas", force: :cascade do |t|
     t.integer "docente_id", null: false
     t.integer "programa_id", null: false
+    t.index ["docente_id", "programa_id"], name: "index_docente_programas_on_docente_id_and_programa_id", unique: true
     t.index ["docente_id"], name: "index_docente_programas_on_docente_id"
     t.index ["programa_id"], name: "index_docente_programas_on_programa_id"
   end
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2018_10_23_020355) do
   create_table "estudiante_aulas", force: :cascade do |t|
     t.integer "aula_id", null: false
     t.integer "estudiante_id", null: false
+    t.index ["aula_id", "estudiante_id"], name: "index_estudiante_aulas_on_aula_id_and_estudiante_id", unique: true
     t.index ["aula_id"], name: "index_estudiante_aulas_on_aula_id"
     t.index ["estudiante_id"], name: "index_estudiante_aulas_on_estudiante_id"
   end

@@ -9,6 +9,7 @@
 class Programa < ApplicationRecord
 
   #Relaciones
+  has_many :docente_programa
   has_many :docente, through: :docente_programa
   has_many :leccion
   has_many :aula

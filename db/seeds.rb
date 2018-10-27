@@ -322,8 +322,9 @@
   Frase.create(frase: "aprendo a multiplicar", leccion_id: 24)
   Frase.create(frase: "es bueno crecer", leccion_id: 24)
   Frase.create(frase: "toco un instrumento musical", leccion_id: 24)
-  
-  ##Solo para facilitar la creacion de aulas (temp)
+
+  ##Solo Test
+
   Usuario.create(user: "docente1", password:"docente1", password_confirmation:"docente1",
           nombre: "sistema", email:"docente1@localhost.com", tipo_usuario_id: 2)
 
@@ -335,6 +336,18 @@
 
   DocentePrograma.create(docente_id: 1, programa_id: 1)
   DocentePrograma.create(docente_id: 2, programa_id: 1)
+
+  Aula.create(docente_id: 1, programa_id: 1)
+  Aula.create(docente_id: 2, programa_id: 1)
+
+  Usuario.create(user: "tutor1", password:"tutor1", password_confirmation:"tutor1",
+          nombre: "sistema", email:"tutor1@localhost.com", tipo_usuario_id: 1)
+
+  Tutor.create(usuario_id: 3)
+
+  Estudiante.create(nombre: "Estudiante1", tutor_id: 1)
+
+  EstudianteAula.create(estudiante_id: 1, aula_id: 1)
 
 end
 

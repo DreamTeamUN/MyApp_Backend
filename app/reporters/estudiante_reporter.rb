@@ -20,13 +20,20 @@ class EstudianteReporter < Reporter
 
       text "Nombre: #{estudiante.nombre}"
       text "Tutor: #{estudiante.tutor.usuario.nombre}"
-      #TODO: text "Fecha Registro #{estudiante.created_at}"
+      text "Fecha Registro: #{estudiante.created_at}"
       move_down @@fontsize
 
-      EstudianteAula.where("estudiante_id == ?", estudiante_id).find_each do |aula|
-        nombre_programa = Programa.find(DocentePrograma.find(Aula.find(aula.aula_id).docente_programa_id).programa_id).nombre
-        text("El estudiante se encuentra registrado en #{nombre_programa}")
+      aulas = estudiante.aula
+      text "El estudiante se encuentra registrado en #{aulas.count} aulas"
+      move_down @@fontsize/2
+
+      aulas.each do |aula|
+        text "Programa: #{aula.programa.nombre}", :indent_paragraphs => @@ident
+        text "Docente: #{aula.docente.usuario.nombre}", :indent_paragraphs => @@ident
+        move_down @@fontsize/2
       end
+
+      ##TODO: Progresos y Puntuaciones
 
     end
   end
