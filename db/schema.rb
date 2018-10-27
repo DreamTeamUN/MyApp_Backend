@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(version: 2018_10_23_020355) do
     t.integer "archivo_id", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "last_login"
     t.index ["archivo_id"], name: "index_usuarios_on_archivo_id"
     t.index ["tipo_usuario_id"], name: "index_usuarios_on_tipo_usuario_id"
   end

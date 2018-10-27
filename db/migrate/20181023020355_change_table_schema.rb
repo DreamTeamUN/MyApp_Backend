@@ -23,8 +23,13 @@ class ChangeTableSchema < ActiveRecord::Migration[5.2]
       t.string :ip_origen
     end
 
+    change_table(:usuarios) do |t|
+      t.date :last_login
+    end
+
   end
-  def self.downer
+
+  def self.down
 
 
     change_table(:aulas) do |t|
@@ -45,6 +50,10 @@ class ChangeTableSchema < ActiveRecord::Migration[5.2]
 
     change_table(:registro_actividads) do |t|
       t.remove :ip_origen
+    end
+
+    change_table(:usuarios) do |t|
+      t.remove :last_login
     end
 
   end
