@@ -10,7 +10,7 @@ class ResourcesUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "../resources/test"
+    "../resources/#{model.tipo_archivo}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -42,6 +42,11 @@ class ResourcesUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-     "#{Archivo.last.id}_#{model.nombre}.#{model.extension}" if original_filename
+    if Archivo.last
+      @id = Archivo.last.id
+    else
+      @id = 0
+    end
+     "#{@id}_#{model.nombre}.#{model.extension}" if original_filename
   end
 end
