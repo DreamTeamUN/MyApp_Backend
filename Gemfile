@@ -64,3 +64,6 @@ gem 'will_paginate'
 
 #Generacion de pdf
 gem 'prawn'
+
+#Para hacer peticiones desde el back
+gem 'httparty'
