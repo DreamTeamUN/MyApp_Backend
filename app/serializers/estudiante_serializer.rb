@@ -7,6 +7,8 @@
 #  nombre           :string
 #  fecha_nacimiento :date
 #  archivo_id       :integer          default(0)
+#  created_at       :datetime
+#  updated_at       :datetime
 #
 
 class EstudianteSerializer < ActiveModel::Serializer

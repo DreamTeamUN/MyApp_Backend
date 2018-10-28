@@ -12,6 +12,8 @@
 #  usuario_id      :integer          not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  titulo          :string
+#  resumen         :string
 #
 
 class EntradaSerializer < ActiveModel::Serializer

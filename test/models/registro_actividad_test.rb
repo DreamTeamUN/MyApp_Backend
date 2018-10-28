@@ -7,6 +7,7 @@
 #  tipo_actividad_id :integer          not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  ip_origen         :string
 #
 
 require 'test_helper'
