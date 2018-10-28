@@ -67,3 +67,9 @@ gem 'prawn'
 
 #Para hacer peticiones desde el back
 gem 'httparty'
+
+#Subida de archivos
+gem 'carrierwave', '~> 1.0'
+
+#Para debug
+gem 'byebug'

@@ -9,19 +9,25 @@
 #  ruta         :string           not null
 #
 
+require 'carrierwave/orm/activerecord'
+
 class Archivo < ApplicationRecord
+
+  #Uploader
+  mount_uploader :ruta, ResourcesUploader
 
   #Relaciones
   has_one :archivo_juego
-  has_one :juego, through: :archivo_juego
-  has_one :entradas
+  has_one :tipo_juego, through: :archivo_juego
+  has_one :entrada
   has_many :usuario
   has_many :estudiante
 
   #Validaciones
   validates :nombre, length: { maximum: 45, minimum: 3 }
-  validates :tipo_archivo, inclusion: { in: ["imagen", "audio", "archivo"] }
+  validates :tipo_archivo, inclusion: { in: ["imagen", "audio", "archivo", "pdf", "html"] }
   validates :extension, inclusion: { in: ["png", "jpg", "jpeg", "pdf", "html", "mp3"] }
-  #validates :ruta, format: { with: \A(ruta a recursos)\/\z} #TODO: definir una ruta a recursos
+
+
 
 end
