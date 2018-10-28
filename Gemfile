@@ -64,3 +64,9 @@ gem 'will_paginate'
 
 #Generacion de pdf
 gem 'prawn'
+
+#Subida de archivos
+gem 'carrierwave', '~> 1.0'
+
+#Para debug
+gem 'byebug'

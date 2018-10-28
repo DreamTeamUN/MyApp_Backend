@@ -17,6 +17,22 @@ class ArchivosController < ApplicationController
   def create
     @archivo = Archivo.new(archivo_params)
 
+    partes = @archivo.ruta.to_s.split("/").last.split(".")
+    @archivo.nombre = partes[0]
+    @archivo.extension = partes[1]
+
+    case partes[1]
+    when "png", "jpg", "jpeg"
+      @archivo.tipo_archivo = "imagen"
+    when "pdf"
+      @archivo.tipo_archivo = "pdf"
+    when "html"
+      @archivo.tipo_archivo = "html"
+    when "mp3"
+      @archivo.tipo_archivo = "audio"
+    end
+
+
     if @archivo.save
       render json: @archivo, status: :created, location: @archivo
     else
@@ -46,6 +62,6 @@ class ArchivosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def archivo_params
-      params.require(:archivo).permit(:nombre, :tipo_archivo, :extension, :ruta)
+      params.permit(:ruta)
     end
 end

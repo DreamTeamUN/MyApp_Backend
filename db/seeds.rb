@@ -26,7 +26,7 @@
   TipoJuego.create(nombre: "Parejas Imagen", descripcion: "Loteria con las palabras y sus imagenes")
   TipoJuego.create(nombre: "Parejas Sonido", descripcion: "Loteria con las palabras y su verbalizacion")
 
-  Archivo.create(id: 0, nombre: "default", tipo_archivo: "imagen", extension: "png", ruta: "/")
+  a = Archivo.create(id: 0, nombre: "default", tipo_archivo: "imagen", extension: "png", ruta: "/")
 
   NivelAcceso.create(id: 0, nombre: "PUBLICO")
 
