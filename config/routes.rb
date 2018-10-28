@@ -205,5 +205,8 @@ Rails.application.routes.draw do
   mount Knock::Engine => "/knock"
   post 'usuario_token' => 'usuario_token#create'
 
+##Ruta para probar mailer
+  get 'mail' => 'mail#send'
+
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

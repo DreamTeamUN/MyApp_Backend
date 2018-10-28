@@ -73,3 +73,6 @@ gem 'carrierwave', '~> 1.0'
 
 #Para debug
 gem 'byebug'
+
+#Para definir variables de entorno ENV
+gem 'figaro'

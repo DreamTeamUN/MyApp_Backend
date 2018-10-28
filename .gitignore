@@ -29,3 +29,6 @@
 # Ignore temporal files
 /resources/pdf/temp/
 /public/uploads
+
+# Ignore application configuration
+/config/application.yml

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome <%= @user.nombre %> to example.com</h1>
+    <p>
+      You have successfully signed up to example.com,<br/>
+      your username is: <%= @user.user %>.<br/>
+      and your user tipe is: <%= TipoUsuario.find(@user.tipo_usuario_id).nombre %>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
