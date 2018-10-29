@@ -6,25 +6,9 @@
   TipoUsuario.create(id: 0, nombre: "Sistema")
   TipoUsuario.create(nombre: "Tutor")
   TipoUsuario.create(nombre: "Docente")
+  TipoUsuario.create(nombre: "Estudiante") #Este tipo de usuario solo será usado para las frases PNL
 
   Programa.create(nombre: "Lectura")
-
-  TipoActividad.create(nombre: "LogIn", descripcion: "Inicio de sesión en la aplicacion")
-  TipoActividad.create(nombre: "LogOut", descripcion: "Finalizar sesión en la aplicacion")
-  TipoActividad.create(nombre: "Inicio Leccion", descripcion: "Inicia una nueva repeticion de una leccion")
-  TipoActividad.create(nombre: "Jugar", descripcion: "Empieza un nuevo juego")
-  TipoActividad.create(nombre: "Crear entrada", descripcion: "Crea una nueva entrada para el foro")
-  TipoActividad.create(nombre: "Publicar entrada", descripcion: "Publica una entrada previamente creada")
-  TipoActividad.create(nombre: "Ver Estudiante", descripcion: "Revisa los datos relacionados a un estudiante")
-  TipoActividad.create(nombre: "Dictar programa", descripcion: "Habilita un docente para dictar un nuevo programa")
-  TipoActividad.create(nombre: "Crear aula", descripcion: "Crea una nueva aula para los estudiantes")
-  TipoActividad.create(nombre: "Inscribir estudiante", descripcion: "Inscribe un estudiante a un aula creada")
-  TipoActividad.create(nombre: "Eliminar estudiante", descripcion: "Elimina a un estudiante de un aula a la que esta inscrito")
-  TipoActividad.create(nombre: "Eliminar Aula", descripcion: "Elimina un aula existente")
-
-  TipoJuego.create(nombre: "Enlaces", descripcion: "Enlazar palabras con su respectiva imagen")
-  TipoJuego.create(nombre: "Parejas Imagen", descripcion: "Loteria con las palabras y sus imagenes")
-  TipoJuego.create(nombre: "Parejas Sonido", descripcion: "Loteria con las palabras y su verbalizacion")
 
   a = Archivo.new(id: 0, nombre: "default", tipo_archivo: "imagen", extension: "png")
   a.ruta = Rails.root.join("resources/imagen/0_default.png").open
@@ -324,6 +308,61 @@
   Frase.create(frase: "aprendo a multiplicar", leccion_id: 24)
   Frase.create(frase: "es bueno crecer", leccion_id: 24)
   Frase.create(frase: "toco un instrumento musical", leccion_id: 24)
+
+
+  FrasePnl.create(frase: "Soy una persona cumplida.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Soy muy amable.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Hago deporte todos los días.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Me concentro en lo que hago.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Amo lo que hago.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Disfruto aprendiendo.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Hago el bien en todo momento.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Me gusta leer.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Me gusta estudiar.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Soy ordenado todo el tiempo.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Practico para aprender.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Logro mis metas.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Yo soy saludable.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Pienso en grande.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Tengo buena salud.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Cuido el planeta.", tipo_usuario_id: 3)
+  FrasePnl.create(frase: "Soy una persona tranquila.", tipo_usuario_id: 3)
+
+  FrasePnl.create(frase: "Logro mis metas.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Mi trabajo siempre es de calidad.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Yo soy saludable.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Soy líder en cada cosa que hago.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Pienso en grande.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Tengo buena salud.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Cuido el planeta.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Soy una persona tranquila.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Estoy en equilibrio con el universo.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Soy la solución de todos mis problemas.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Soy una persona positiva.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Siempre se puede empezar de nuevo.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Una mentalidad positiva cambiará el mundo a tu placer.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Mira al sol e ilumínate con una sonrisa.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Soy optimista.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Soy una persona cumplida.", tipo_usuario_id: 1)
+  FrasePnl.create(frase: "Hago deporte todos los días.", tipo_usuario_id: 1)
+
+
+  TipoActividad.create(nombre: "LogIn", descripcion: "Inicio de sesión en la aplicacion")
+  TipoActividad.create(nombre: "LogOut", descripcion: "Finalizar sesión en la aplicacion")
+  TipoActividad.create(nombre: "Inicio Leccion", descripcion: "Inicia una nueva repeticion de una leccion")
+  TipoActividad.create(nombre: "Jugar", descripcion: "Empieza un nuevo juego")
+  TipoActividad.create(nombre: "Crear entrada", descripcion: "Crea una nueva entrada para el foro")
+  TipoActividad.create(nombre: "Publicar entrada", descripcion: "Publica una entrada previamente creada")
+  TipoActividad.create(nombre: "Ver Estudiante", descripcion: "Revisa los datos relacionados a un estudiante")
+  TipoActividad.create(nombre: "Dictar programa", descripcion: "Habilita un docente para dictar un nuevo programa")
+  TipoActividad.create(nombre: "Crear aula", descripcion: "Crea una nueva aula para los estudiantes")
+  TipoActividad.create(nombre: "Inscribir estudiante", descripcion: "Inscribe un estudiante a un aula creada")
+  TipoActividad.create(nombre: "Eliminar estudiante", descripcion: "Elimina a un estudiante de un aula a la que esta inscrito")
+  TipoActividad.create(nombre: "Eliminar Aula", descripcion: "Elimina un aula existente")
+
+  TipoJuego.create(nombre: "Enlaces", descripcion: "Enlazar palabras con su respectiva imagen")
+  TipoJuego.create(nombre: "Parejas Imagen", descripcion: "Loteria con las palabras y sus imagenes")
+  TipoJuego.create(nombre: "Parejas Sonido", descripcion: "Loteria con las palabras y su verbalizacion")
 
   ##Solo Test
 
