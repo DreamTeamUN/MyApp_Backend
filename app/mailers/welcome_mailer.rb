@@ -1,10 +1,10 @@
 class WelcomeMailer < ApplicationMailer
 
-  default from: 'adcorredorm@unal.edu.co'
 
   def welcome_email
     @user = params[:usuario]
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+    @src = "#{Rails.root.join("/app/views/welcome_mailer")}"
+    mail(to: @user.email, subject: "Bienvenido #{@user.nombre} a Yo Soy Muy Inteligente")
   end
 
 end
