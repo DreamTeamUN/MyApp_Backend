@@ -2,13 +2,17 @@
 #
 # Table name: estudiantes
 #
-#  id         :integer          not null, primary key
-#  usuario_id :integer          not null
-#  tutor_id   :integer          not null
+#  id               :integer          not null, primary key
+#  tutor_id         :integer          not null
+#  nombre           :string
+#  fecha_nacimiento :date
+#  archivo_id       :integer          default(0)
+#  created_at       :datetime
+#  updated_at       :datetime
 #
 
 class EstudianteSerializer < ActiveModel::Serializer
-  attributes :id, :usuario_id, :tutor_id
+  attributes :id, :tutor_id, :nombre, :fecha_nacimiento, :archivo_id
 
   has_many :progreso
   has_many :puntuacion

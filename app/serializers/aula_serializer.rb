@@ -2,8 +2,9 @@
 #
 # Table name: aulas
 #
-#  id                  :integer          not null, primary key
-#  docente_programa_id :integer          not null
+#  id          :integer          not null, primary key
+#  docente_id  :integer
+#  programa_id :integer
 #
 
 class AulaSerializer < ActiveModel::Serializer

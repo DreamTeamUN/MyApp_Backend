@@ -13,5 +13,6 @@ class Tutor < ApplicationRecord
   has_many :estudiante
 
   #Validaciones
-  
+  validates :usuario_id, uniqueness: true
+
 end
