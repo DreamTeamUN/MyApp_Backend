@@ -54,11 +54,9 @@ Rails.application.routes.draw do
 
   end
 
-  resources :nivel_accesos, only: [] do
-    resources :entradas, only: [:index]
-  end
-
   resources :entradas, except: [:create, :index]
+
+  get 'entradas/:tipo/:id/:page' => 'entradas#index'
 
 ##Estudiante-Aula
 

@@ -3,8 +3,15 @@ class EntradasController < ApplicationController
 
   # GET /entradas
   def index
-    @entradas = Entrada.by_nivel_acceso(params[:nivel_acceso_id], page_param)
-    #TODO: Añadir otras formas de buscar diferentes de filtrar las entradas
+
+    case params[:modo]
+    when 1
+      @entradas = Entrada.by_nivel_acceso(params[:id], params[:page])
+    when 2
+      @entradas = Entrada.by_usuario(params[:id], params[:page])
+    when 3
+      @entradas = Entrada.by_entrada(params[:id], params[:page])
+    end
 
     render json: @entradas
   end
@@ -59,10 +66,6 @@ class EntradasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def entrada_params
-      params.require(:entrada).permit(:nivel_acceso_id, :texto, :abierto, :publicado)
-    end
-
-    def page_param
-      params.permit(:page)
+      params.require(:entrada).permit(:nivel_acceso_id, :titulo, :resumen, :texto, :abierto, :publicado)
     end
 end

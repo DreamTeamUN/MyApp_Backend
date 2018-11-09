@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_162518) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "titulo"
-    t.string "resumen"
+    t.string "resumen", default: ""
     t.string "texto", default: ""
     t.boolean "oculta", default: false
     t.index ["created_at"], name: "index_entradas_on_created_at"

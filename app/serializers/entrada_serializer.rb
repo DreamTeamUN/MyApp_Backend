@@ -12,11 +12,11 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  titulo          :string
-#  resumen         :string
+#  resumen         :string           default("")
 #  texto           :string           default("")
 #  oculta          :boolean          default(FALSE)
 #
 
 class EntradaSerializer < ActiveModel::Serializer
-  attributes :id, :publicado, :abierto, :ramificacion, :archivo_id, :entrada_id, :nivel_acceso_id, :usuario_id, :created_at
+  attributes :id, :publicado, :abierto, :ramificacion, :titulo, :resumen, :texto, :entrada_id, :nivel_acceso_id, :usuario_id, :created_at
 end

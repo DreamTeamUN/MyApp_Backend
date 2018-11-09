@@ -12,7 +12,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  titulo          :string
-#  resumen         :string
+#  resumen         :string           default("")
 #  texto           :string           default("")
 #  oculta          :boolean          default(FALSE)
 #

@@ -12,7 +12,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  titulo          :string
-#  resumen         :string
+#  resumen         :string           default("")
 #  texto           :string           default("")
 #  oculta          :boolean          default(FALSE)
 #
@@ -26,9 +26,11 @@ class Entrada < ApplicationRecord
 
   #Validaciones
   validates :ramificacion, inclusion: { in: [1, 2, 3], message: "%{value} no es un valor de ramificacion valido"}
+  validates :titulo, presence: true, length: { maximum: 20, minimum: 5}
+  validates :resumen, length: { maximum: 40 }
 
   #Consultas
-  def self.by_usuario( usuario_id, page ) #TODO: NO se de donde sacar el parametro page
+  def self.by_usuario( usuario_id, page )
     where("usuario_id == ?", usuario_id).paginate(page: page, per_page: 10)
   end
 
