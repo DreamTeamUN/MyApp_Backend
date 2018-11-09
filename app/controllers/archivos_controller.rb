@@ -26,8 +26,6 @@ class ArchivosController < ApplicationController
       @archivo.tipo_archivo = "imagen"
     when "pdf"
       @archivo.tipo_archivo = "pdf"
-    when "html"
-      @archivo.tipo_archivo = "html"
     when "mp3"
       @archivo.tipo_archivo = "audio"
     end

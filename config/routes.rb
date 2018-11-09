@@ -52,14 +52,13 @@ Rails.application.routes.draw do
       resources :entradas, only: [:create]
     end
 
-    resources :entradas, only: [:index]
   end
 
   resources :nivel_accesos, only: [] do
     resources :entradas, only: [:index]
   end
 
-  resources :entradas, except: [:index, :create]
+  resources :entradas, except: [:create, :index]
 
 ##Estudiante-Aula
 
@@ -204,9 +203,6 @@ Rails.application.routes.draw do
 
   mount Knock::Engine => "/knock"
   post 'usuario_token' => 'usuario_token#create'
-
-##Ruta para probar mailer
-  get 'mail' => 'mail#send'
 
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

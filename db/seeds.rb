@@ -24,7 +24,6 @@
     publicado: false,
     abierto: false,
     ramificacion: 0,
-    archivo_id: 0,
     nivel_acceso_id:0,
     usuario_id: 0
   )
