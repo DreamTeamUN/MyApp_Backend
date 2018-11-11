@@ -22,9 +22,8 @@
   o = Entrada.new(
     id: 0,
     publicado: false,
-    abierto: false,
+    abierto: true,
     ramificacion: 0,
-    archivo_id: 0,
     nivel_acceso_id:0,
     usuario_id: 0
   )

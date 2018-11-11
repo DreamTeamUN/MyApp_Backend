@@ -3,10 +3,14 @@ class EntradasController < ApplicationController
 
   # GET /entradas
   def index
-    if params[:usuario_id]
-      @entradas = Entrada.where(usuario_id: params[:usuario_id])
-    else
-      @entradas = Entrada.where(nivel_acceso_id: params[:nivel_acceso_id])
+
+    case params[:modo]
+    when 1
+      @entradas = Entrada.by_nivel_acceso(params[:id], params[:page])
+    when 2
+      @entradas = Entrada.by_usuario(params[:id], params[:page])
+    when 3
+      @entradas = Entrada.by_entrada(params[:id], params[:page])
     end
 
     render json: @entradas
@@ -20,29 +24,22 @@ class EntradasController < ApplicationController
   # POST /entradas
   def create
 
-    @archivo = Archivo.new()
-    @archivo.nombre = "Entrada\##{Entrada.last.id + 1}"
-    @archivo.extension = "html"
-    @archivo.ruta = "/"
+    padre = Entrada.find(params[:entrada_id])
 
-    if @archivo.save
+    @entrada = Entrada.new(entrada_params)
+    @entrada.usuario_id = params[:usuario_id]
+    @entrada.ramificacion = padre.ramificacion + 1
 
-      @entrada = Entrada.new()
-      @entrada.usuario_id = params[:usuario_id]
+    if padre.abierto
       @entrada.entrada_id = params[:entrada_id]
-      @entrada.ramificacion = Entrada.find(params[:entrada_id]).ramificacion + 1
-      @entrada.nivel_acceso_id = 0
-      @entrada.archivo_id = @archivo.id
-
-      if @entrada.save
-        render json: @entrada, status: :created, location: @entrada
-      else
-        Archivo.destroy(@archivo.id)
-        render json: @entrada.errors, status: :unprocessable_entity
-      end
-
     else
-      render json: @archivo.errors, status: :unprocessable_entity
+      @entrada.errors.add(:publicado, "Esta entrada no permite mas publicaciones")
+    end
+
+    if @entrada.save
+      render json: @entrada, status: :created, location: @entrada
+    else
+      render json: @entrada.errors, status: :unprocessable_entity
     end
 
   end
@@ -58,7 +55,6 @@ class EntradasController < ApplicationController
 
   # DELETE /entradas/1
   def destroy
-    Archivo.find(@entrada.archivo_id).destroy
     @entrada.destroy
   end
 
@@ -70,6 +66,6 @@ class EntradasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def entrada_params
-      params.require(:entrada).permit(:publicado, :abierto, :nivel_acceso_id)
+      params.require(:entrada).permit(:nivel_acceso_id, :titulo, :resumen, :texto, :abierto, :publicado)
     end
 end
