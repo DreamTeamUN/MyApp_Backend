@@ -5,25 +5,35 @@ Navigation: [Website][1] | [FrontEnd repository][2] | **BackEnd repository**
   [1]: https://github.com/DreamTeamUN
   [2]: https://github.com/DreamTeamUN/YoSoyMuyInteligente_FrontEnd
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby  version 2.4.0
+* Rails version 5.2.1
 
-Things you may want to cover:
+**Uso:**
+* **Foro**
+El foro se maneja haciendo uso de entradas.
+Existe una entrada con id *0* la cual funciona como raiz de todas las demas entradas funcionan como comentarios de otras entradas (la máxima ramificación es de 3).
+  * Creación
+Para crear una entrada se utiliza la ruta:
+`/usuarios/:usuario_id/entradas/:entrada_id/entradas`
+    * ***:usuario_id*** es el id del usuario autor de la entrada.
+    * ***:entrada_id*** es el id de la entrada sobre la cual será comentada, en caso de ser el inicio de un nuevo tema el id debe ser *0*.
 
-* Ruby version
+    Adicionalmente es necesario pasar un objeto JSON llamado entrada con los campos:
+    * **nivel_acceso_id** id referente a el nivel de acceso que tendrán los demas usuarios sobre la entrada, si el acceso será publico el id debe ser *0*.
+    * **titulo** es el titulo que aparecerá en la entrada
+    (No puede ser menor a 5 caracteres, ni mayor a 20 caracteres).
+    * **resumen** es un breve resumen de lo que trata la entrada
+    (No puede ser mayor a 40 caracteres).
+    * **texto** el texto a almacenar en la entrada, en caso de no pasar este parametro el texto guardado será vacio.
 
-* System dependencies
+    En caso de ser necesario se pueden adicionar los campos de *abierto* y *publicado* los cuales son del tipo booleano, o estos mismos campos pueden ser modificados posteriormente con un *Patch*
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  * **Index**
+Para poder listar las entradas se hace uso de la ruta:
+`/entradas/:tipo/:id/:page`
+    * **:tipo** Hace referencia al filtro que será aplicado en la busqueda de entradas, estos pueden ser:
+      * **1** Por nivel de acceso.
+      * **2** Por autor (usuario).
+      * **3** Por entrada padre.
+     * **:id** Es el id del objeto referenciado por **:tipo**.
+     * **:page** Es la pagina solicitada para las entradas, estas tienen un tamaño de 10 entradas.

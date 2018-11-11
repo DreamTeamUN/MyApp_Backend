@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_23_020355) do
+ActiveRecord::Schema.define(version: 2018_11_01_162518) do
 
   create_table "archivo_juegos", force: :cascade do |t|
     t.integer "tipo_juego_id", null: false
@@ -52,17 +52,19 @@ ActiveRecord::Schema.define(version: 2018_10_23_020355) do
     t.boolean "publicado", default: false, null: false
     t.boolean "abierto", default: false, null: false
     t.integer "ramificacion", default: 0, null: false
-    t.integer "archivo_id", null: false
     t.integer "entrada_id"
     t.integer "nivel_acceso_id", null: false
     t.integer "usuario_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "titulo"
-    t.string "resumen"
-    t.index ["archivo_id"], name: "index_entradas_on_archivo_id"
+    t.string "resumen", default: ""
+    t.string "texto", default: ""
+    t.boolean "oculta", default: false
+    t.index ["created_at"], name: "index_entradas_on_created_at"
     t.index ["entrada_id"], name: "index_entradas_on_entrada_id"
     t.index ["nivel_acceso_id"], name: "index_entradas_on_nivel_acceso_id"
+    t.index ["updated_at"], name: "index_entradas_on_updated_at"
     t.index ["usuario_id"], name: "index_entradas_on_usuario_id"
   end
 
