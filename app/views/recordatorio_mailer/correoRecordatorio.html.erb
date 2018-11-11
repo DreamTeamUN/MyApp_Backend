@@ -104,7 +104,7 @@
                 <td >
                   <div class="contentEditableContainer contentTextEditable">
                     <div class="contentEditable">
-                      <h3 style="text-align:left;">Hola, hace tiempo que no te vemos. Recuerda que el aprendizaje es un proceso continuo, nunca pares de aprender. 
+                      <h3 style="text-align:left;">Hola, hace tiempo que no te vemos. Recuerda que el aprendizaje es un proceso continuo, nunca pares de aprender.
                       </h3 >
                       <br>
                       <h3 style="text-align:left;">A continuación te recordamos la información de tu cuenta, así como los cursos a los que te encuentras inscrito.
@@ -121,11 +121,11 @@
                   <div class="contentEditableContainer contentTextEditable">
                     <div class="contentEditable">
                       <h2 style="text-align:center;font-size:24px;">Resumen de usuario</h2>
-                      <p style="text-align:left;">Usuario: </p>
-                      <p style="text-align:left;">Nombre: </p>
-                      <p style="text-align:left;">Correo: </p>
-                      <p style="text-align:left;">Fecha de Registro: </p>
-                      <p style="text-align:left;">Tipo de usuario: </p>
+                      <p style="text-align:left;">Usuario: <%= @user.user %></p>
+                      <p style="text-align:left;">Nombre: <%= @user.nombre %></p>
+                      <p style="text-align:left;">Correo: <%= @user.email %></p>
+                      <p style="text-align:left;">Fecha de Registro: <%= @user.created_at %></p>
+                      <p style="text-align:left;">Tipo de usuario: <%= @user.tipo_usuario.nombre %></p>
                     </div>
                   </div>
                 </td>
