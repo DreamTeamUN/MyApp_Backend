@@ -35,7 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'knock'
 #gema de autenticacion
 #gem 'devise'
-
+gem 'httparty'
 #gema de serializers
 gem 'active_model_serializers', '~> 0.10.0'
 group :development, :test do
