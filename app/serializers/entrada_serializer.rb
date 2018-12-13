@@ -19,4 +19,5 @@
 
 class EntradaSerializer < ActiveModel::Serializer
   attributes :id, :publicado, :abierto, :ramificacion, :titulo, :resumen, :texto, :entrada_id, :nivel_acceso_id, :usuario_id, :created_at
+  has_one :usuario
 end

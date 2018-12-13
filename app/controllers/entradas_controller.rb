@@ -4,12 +4,12 @@ class EntradasController < ApplicationController
   # GET /entradas
   def index
 
-    case params[:modo]
-    when 1
+    case params[:tipo]
+    when "1"
       @entradas = Entrada.by_nivel_acceso(params[:id], params[:page])
-    when 2
+    when "2"
       @entradas = Entrada.by_usuario(params[:id], params[:page])
-    when 3
+    when "3"
       @entradas = Entrada.by_entrada(params[:id], params[:page])
     end
 
