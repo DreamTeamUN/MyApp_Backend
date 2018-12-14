@@ -11,7 +11,7 @@
   Programa.create(nombre: "Lectura")
 
   a = Archivo.new(id: 0, nombre: "default", tipo_archivo: "imagen", extension: "png")
-  a.ruta = Rails.root.join("resources/imagen/0_default.png").open
+  a.ruta = Rails.root.join("public/0_default.png").open
   a.save!
 
   NivelAcceso.create(id: 0, nombre: "PUBLICO")
