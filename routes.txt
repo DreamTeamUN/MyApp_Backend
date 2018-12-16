@@ -37,7 +37,6 @@
                                            DELETE /estudiante_aulas/:id(.:format)                                                                   estudiante_aulas#destroy
                          tutor_estudiantes GET    /tutors/:tutor_id/estudiantes(.:format)                                                           estudiantes#index
                                            POST   /tutors/:tutor_id/estudiantes(.:format)                                                           estudiantes#create
-                               estudiantes GET    /estudiantes(.:format)                                                                            estudiantes#index
                                 estudiante GET    /estudiantes/:id(.:format)                                                                        estudiantes#show
                    tipo_usuario_frase_pnls GET    /tipo_usuarios/:tipo_usuario_id/frase_pnls(.:format)                                              frase_pnls#index
                                            POST   /tipo_usuarios/:tipo_usuario_id/frase_pnls(.:format)                                              frase_pnls#create
@@ -99,6 +98,7 @@ usuario_tipo_actividad_registro_actividads POST   /usuarios/:usuario_id/tipo_act
                                            PATCH  /usuarios/:id(.:format)                                                                           usuarios#update
                                            PUT    /usuarios/:id(.:format)                                                                           usuarios#update
                                            DELETE /usuarios/:id(.:format)                                                                           usuarios#destroy
+                                   socials POST   /socials(.:format)                                                                                socials#create
                                            GET    /usuarios/:usuario_id/report(.:format)                                                            pdf#reporteUsuario
                                            GET    /estudiantes/:estudiante_id/report(.:format)                                                      pdf#reporteEstudiante
                                      knock        /knock                                                                                            Knock::Engine

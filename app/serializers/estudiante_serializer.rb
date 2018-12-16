@@ -14,7 +14,8 @@
 class EstudianteSerializer < ActiveModel::Serializer
   attributes :id, :tutor_id, :nombre, :fecha_nacimiento, :archivo_id
 
+  has_many :aula
   has_many :progreso
   has_many :puntuacion
-  has_many :aula
+
 end

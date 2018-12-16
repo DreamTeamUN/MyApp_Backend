@@ -80,7 +80,7 @@ Rails.application.routes.draw do
     resources :estudiantes, only: [:index, :create]
   end
 
-  resources :estudiantes, only: [:index, :show]
+  resources :estudiantes, only: [:show]
 
 ##FrasesPNL
 

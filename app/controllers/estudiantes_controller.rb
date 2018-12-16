@@ -3,7 +3,7 @@ class EstudiantesController < ApplicationController
 
   # GET /estudiantes
   def index
-    @estudiantes = Estudiante.all
+    @estudiantes = Tutor.find(params[:tutor_id]).estudiante
 
     render json: @estudiantes
   end

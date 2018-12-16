@@ -13,7 +13,7 @@ Navigation: [Website][1] | [FrontEnd repository][2] | **BackEnd repository**
 * **Estudiantes**
 Los estudiantes son entidades asiciadas a un tutor los cuales pueden inscribirse en las aulas y tomar las diferentes lecciones.
   * Creación
-Para crear una entrada se utiliza la ruta:
+Para crear una entrada se hace una peticion *POST* a la ruta:
 `/tutors/:tutor_id/estudiantes`
     * ***:tutor_id*** es el id del tutor del nuevo estudiante (no olvidar que el id del tutor no es necesariamente igual al id de usuario).
 
@@ -21,12 +21,17 @@ Para crear una entrada se utiliza la ruta:
     * **nombre** Nombre del nuevo estudiante (Entre 3 a 45 caracteres).
     * **fecha_nacimiento** (*opcional*) Fecha de nacimiento del nuevo estudiante.
     * **archivo_id** (*opcional*) Es el archivo usado como imagen de perfil del usuario, el usado por default es el id de archivo *0*.
-    
+
+  * Index
+Los estudiantes son listados para un tutor en particular, para hacer esto se hace una peticion *GET* a la ruta:
+`/tutors/:tutor_id/estudiantes`
+    * ***:tutor_id*** es el id del tutor a los que se les van a listar los estudiantes.
+
 * **Foro**
 El foro se maneja haciendo uso de entradas.
 Existe una entrada con id *0* la cual funciona como raiz de todas las demas entradas funcionan como comentarios de otras entradas (la máxima ramificación es de 3).
   * Creación
-Para crear una entrada se utiliza la ruta:
+Para crear una entrada se envia una peticion *POST* a la ruta:
 `/usuarios/:usuario_id/entradas/:entrada_id/entradas`
     * ***:usuario_id*** es el id del usuario autor de la entrada.
     * ***:entrada_id*** es el id de la entrada sobre la cual será comentada, en caso de ser el inicio de un nuevo tema el id debe ser *0*.
@@ -42,7 +47,7 @@ Para crear una entrada se utiliza la ruta:
     En caso de ser necesario se pueden adicionar los campos de *abierto* y *publicado* los cuales son del tipo booleano, o estos mismos campos pueden ser modificados posteriormente con un *Patch*
 
   * **Index**
-Para poder listar las entradas se hace uso de la ruta:
+Para poder listar las entradas se hace una peticion *GET* a la ruta:
 `/entradas/:tipo/:id/:page`
     * **:tipo** Hace referencia al filtro que será aplicado en la busqueda de entradas, estos pueden ser:
       * **1** Por nivel de acceso.
