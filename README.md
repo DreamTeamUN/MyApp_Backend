@@ -59,6 +59,16 @@ Los estudiantes son listados para un tutor en particular, para hacer esto se hac
 `/tutors/:tutor_id/estudiantes`
     * ***:tutor_id*** es el id del tutor a los que se les van a listar los estudiantes.
 
+* **Estudiante_Aula**
+Esta entidad crea la relacion *Estudiante_Aula* la cual valida hace que un *Estudiante* se encuentre matriculado a un *Aula* particular.
+
+  * **Create**
+Para crear un *Estudiante_Aula* se hace una peticion *POST* a la ruta:
+`/estudiantes/:estudiante_id/aulas/:aula_id/estudiante_aulas`
+
+    * **:estudiante_id** Es el id del estudiante que va a ser matriculado.
+    * **:aula_id** Es el id del aula a la cual será matriculado.
+
 * **Foro**
 El foro se maneja haciendo uso de entradas.
 Existe una entrada con id *0* la cual funciona como raiz de todas las demas entradas funcionan como comentarios de otras entradas (la máxima ramificación es de 3).
