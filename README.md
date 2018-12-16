@@ -9,10 +9,42 @@ Navigation: [Website][1] | [FrontEnd repository][2] | **BackEnd repository**
 * Rails version 5.2.1
 
 **Uso:**
+* **Aulas**
+Las aulas son las entidades donde se agrupan a los estudiantes para poder impartir las lecciones designadas, cada aula esta asignada a un *Programa* unico y esta a cargo de un *Docente*.
+
+  * **Create**
+Para crear un *Aula* es necesario hacer una peticion *POST* a la ruta:
+`/docente_programas/:docente_programa_id/aulas`
+    * ***:docente_programa_id*** Es el id de la entidad que verifica que un docente determinado imparte un programa.
+
+  * **Index**
+Para poder listar las aulas se hace una peticion *GET* a la ruta:
+`/aulas/:tipo/:id/:page`
+    * **:tipo** Hace referencia al filtro que será aplicado en la busqueda de aulas, estos pueden ser:
+      * **1** Por programa.
+      * **2** Por docente.
+     * **:id** Es el id del objeto referenciado por **:tipo**.
+     * **:page** Es la pagina solicitada para las aulas, estas tienen un tamaño de 10 aulas.
+
+  * **Show**
+Para visualizar un *Aula* en particular se hace una petición *GET* a la ruta:
+`/aulas/:id`
+    * **:id** Es el id
+
+    *(Al visualizar un Aula, uno de los campos devueltos por el **API** es el de estudiante el cual es un objeto *JSON* con los estudiantes matriculados al Aula.)*
+
+* **Docente_Programa**
+Las entidades *Docente_Programa* existen para confirmar que un docente dado tiene permitido dar cierto programa, por lo que es necesario que exista esta entidad para que crear posteriormente un *Aula*.
+
+  * **Create**
+Para crear esta entidad se hace una peticion *POST* a la ruta:
+`/programas/:programa_id/docentes/:docente_id/docente_programas`
+    * ***:programa_id*** Programa al cual se va a hacer la autorizacion.
+    * ***:docente_id*** Docente al cual se va a hacer la autorizacion.
 
 * **Estudiantes**
 Los estudiantes son entidades asiciadas a un tutor los cuales pueden inscribirse en las aulas y tomar las diferentes lecciones.
-  * Creación
+  * **Create**
 Para crear una entrada se hace una peticion *POST* a la ruta:
 `/tutors/:tutor_id/estudiantes`
     * ***:tutor_id*** es el id del tutor del nuevo estudiante (no olvidar que el id del tutor no es necesariamente igual al id de usuario).
@@ -22,7 +54,7 @@ Para crear una entrada se hace una peticion *POST* a la ruta:
     * **fecha_nacimiento** (*opcional*) Fecha de nacimiento del nuevo estudiante.
     * **archivo_id** (*opcional*) Es el archivo usado como imagen de perfil del usuario, el usado por default es el id de archivo *0*.
 
-  * Index
+  * **Index**
 Los estudiantes son listados para un tutor en particular, para hacer esto se hace una peticion *GET* a la ruta:
 `/tutors/:tutor_id/estudiantes`
     * ***:tutor_id*** es el id del tutor a los que se les van a listar los estudiantes.
@@ -30,7 +62,7 @@ Los estudiantes son listados para un tutor en particular, para hacer esto se hac
 * **Foro**
 El foro se maneja haciendo uso de entradas.
 Existe una entrada con id *0* la cual funciona como raiz de todas las demas entradas funcionan como comentarios de otras entradas (la máxima ramificación es de 3).
-  * Creación
+  * **Create**
 Para crear una entrada se envia una peticion *POST* a la ruta:
 `/usuarios/:usuario_id/entradas/:entrada_id/entradas`
     * ***:usuario_id*** es el id del usuario autor de la entrada.

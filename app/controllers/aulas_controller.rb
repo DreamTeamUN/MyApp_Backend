@@ -3,7 +3,12 @@ class AulasController < ApplicationController
 
   # GET /aulas
   def index
-    @aulas = Aula.all
+    case params[:tipo]
+    when "1"
+      @aulas = Aula.by_programa(params[:id], params[:page])
+    when "2"
+      @aulas = Aula.by_docente(params[:id], params[:page])
+    end
 
     render json: @aulas
   end

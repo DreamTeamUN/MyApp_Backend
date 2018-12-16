@@ -11,12 +11,12 @@
                                            PATCH  /archivos/:id(.:format)                                                                           archivos#update
                                            PUT    /archivos/:id(.:format)                                                                           archivos#update
                                            DELETE /archivos/:id(.:format)                                                                           archivos#destroy
-                    docente_programa_aulas GET    /docente_programas/:docente_programa_id/aulas(.:format)                                           aulas#index
-                                           POST   /docente_programas/:docente_programa_id/aulas(.:format)                                           aulas#create
+                    docente_programa_aulas POST   /docente_programas/:docente_programa_id/aulas(.:format)                                           aulas#create
                                       aula GET    /aulas/:id(.:format)                                                                              aulas#show
                                            PATCH  /aulas/:id(.:format)                                                                              aulas#update
                                            PUT    /aulas/:id(.:format)                                                                              aulas#update
                                            DELETE /aulas/:id(.:format)                                                                              aulas#destroy
+                                           GET    /aulas/:tipo/:id/:page(.:format)                                                                  aulas#index
                  docente_docente_programas GET    /docentes/:docente_id/docente_programas(.:format)                                                 docente_programas#index
                 programa_docente_programas GET    /programas/:programa_id/docente_programas(.:format)                                               docente_programas#index
         programa_docente_docente_programas POST   /programas/:programa_id/docentes/:docente_id/docente_programas(.:format)                          docente_programas#create
