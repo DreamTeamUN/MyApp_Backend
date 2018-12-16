@@ -15,7 +15,7 @@ class DocenteProgramasController < ApplicationController
 
   # POST /docente_programas
   def create
-    @docente_programa = DocentePrograma.new(docente_programa_params)
+    @docente_programa = DocentePrograma.new( docente_id: params[:docente_id], programa_id: params[:programa:id])
 
     if @docente_programa.save
       render json: @docente_programa, status: :created, location: @docente_programa

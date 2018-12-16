@@ -16,4 +16,5 @@ class EstudianteSerializer < ActiveModel::Serializer
 
   has_many :progreso
   has_many :puntuacion
+  has_many :aula
 end
