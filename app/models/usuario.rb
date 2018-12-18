@@ -33,5 +33,6 @@ class Usuario < ApplicationRecord
   validates :nombre, length: { minimum: 3, maximum: 45 }
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "Correo invalido" },
     uniqueness: {scope: :email, message: "El correo ya esta registrado"}
+  validates :last_login, presence: true
 
 end
