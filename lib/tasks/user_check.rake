@@ -6,9 +6,11 @@ namespace :user_check do
       meses = ((Date.today - user.last_login)/30).to_i
 
       if(meses == 1 || (meses%4 == 0 && meses > 0))
-        CheckLoginJob.perform_now(user, meses)
+        CheckLoginJob.perform_now(user)
       end
     end
+
+    puts "Daily check Complete!"
 
   end
 
