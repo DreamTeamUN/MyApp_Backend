@@ -31,15 +31,15 @@ class Entrada < ApplicationRecord
 
   #Consultas
   def self.by_usuario( usuario_id, page )
-    where("usuario_id == ?", usuario_id).paginate(page: page, per_page: 10)
+    where("usuario_id == ? AND id > 0", usuario_id).paginate(page: page, per_page: 10)
   end
 
   def self.by_nivel_acceso( nivel_acceso_id, page )
-    where("nivel_acceso_id == ?", nivel_acceso_id).paginate(page: page, per_page: 10)
+    where("nivel_acceso_id == ? AND id > 0", nivel_acceso_id).paginate(page: page, per_page: 10)
   end
 
   def self.by_entrada( entrada_id, page )
-    where("entrada_id == ?", entrada_id).paginate(page: page, per_page: 10)
+    where("entrada_id == ? AND id > 0", entrada_id).paginate(page: page, per_page: 10)
   end
 
 end

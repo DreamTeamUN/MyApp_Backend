@@ -11,13 +11,13 @@
   Programa.create(nombre: "Lectura")
 
   a = Archivo.new(id: 0, nombre: "default", tipo_archivo: "imagen", extension: "png")
-  a.ruta = Rails.root.join("resources/imagen/0_default.png").open
+  a.ruta = Rails.root.join("public/0_default.png").open
   a.save!
 
   NivelAcceso.create(id: 0, nombre: "PUBLICO")
 
   Usuario.create(id: 0, user: "sistema", password:"sistema", password_confirmation:"sistema",
-          nombre: "sistema", email:"localhost@localhost.com", tipo_usuario_id: 0, archivo_id:0)
+          nombre: "sistema", email:"ysmiapp@gmail.com", tipo_usuario_id: 0, archivo_id:0, last_login: Date.today)
 
   o = Entrada.new(
     id: 0,
@@ -366,28 +366,20 @@
   ##Solo Test
 
   Usuario.create(user: "docente1", password:"docente1", password_confirmation:"docente1",
-          nombre: "sistema", email:"docente1@localhost.com", tipo_usuario_id: 2)
+          nombre: "sistema", email:"docente1@localhost.com", tipo_usuario_id: 2, last_login: Date.today)
 
   Usuario.create(user: "docente2", password:"docente2", password_confirmation:"docente2",
-          nombre: "sistema", email:"docente2@localhost.com", tipo_usuario_id: 2)
+          nombre: "sistema", email:"docente2@localhost.com", tipo_usuario_id: 2, last_login: Date.today)
 
   Docente.create(usuario_id: 1)
   Docente.create(usuario_id: 2)
 
-  DocentePrograma.create(docente_id: 1, programa_id: 1)
-  DocentePrograma.create(docente_id: 2, programa_id: 1)
-
-  Aula.create(docente_id: 1, programa_id: 1)
-  Aula.create(docente_id: 2, programa_id: 1)
-
   Usuario.create(user: "tutor1", password:"tutor1", password_confirmation:"tutor1",
-          nombre: "sistema", email:"tutor1@localhost.com", tipo_usuario_id: 1)
+          nombre: "sistema", email:"tutor1@localhost.com", tipo_usuario_id: 1, last_login: Date.today)
 
   Tutor.create(usuario_id: 3)
 
   Estudiante.create(nombre: "Estudiante1", tutor_id: 1)
-
-  EstudianteAula.create(estudiante_id: 1, aula_id: 1)
 
 end
 

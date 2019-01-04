@@ -3,7 +3,7 @@ class EstudiantesController < ApplicationController
 
   # GET /estudiantes
   def index
-    @estudiantes = Estudiante.all
+    @estudiantes = Tutor.find(params[:tutor_id]).estudiante
 
     render json: @estudiantes
   end
@@ -16,6 +16,10 @@ class EstudiantesController < ApplicationController
   # POST /estudiantes
   def create
     @estudiante = Estudiante.new(estudiante_params)
+
+    @estudiante.tutor_id = params[:tutor_id]
+
+    #TODO: verificar que el archivo sea una imagen
 
     if @estudiante.save
       render json: @estudiante, status: :created, location: @estudiante
@@ -46,6 +50,6 @@ class EstudiantesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def estudiante_params
-      params.require(:estudiante).permit(:usuario_id, :tutor_id)
+      params.require(:estudiante).permit(:nombre, :fecha_nacimiento, :archivo_id)
     end
 end

@@ -3,7 +3,12 @@ class AulasController < ApplicationController
 
   # GET /aulas
   def index
-    @aulas = Aula.all
+    case params[:tipo]
+    when "1"
+      @aulas = Aula.by_programa(params[:id], params[:page])
+    when "2"
+      @aulas = Aula.by_docente(params[:id], params[:page])
+    end
 
     render json: @aulas
   end
@@ -15,9 +20,9 @@ class AulasController < ApplicationController
 
   # POST /aulas
   def create
-    @aula = Aula.new()
+    docente_programa = DocentePrograma.find(params[:docente_programa_id])
 
-    @aula.docente_programa_id = params[:docente_programa_id]
+    @aula = Aula.new(docente_id: docente_programa.docente_id, programa_id: docente_programa.programa_id)
 
     if @aula.save
       render json: @aula, status: :created, location: @aula
@@ -48,6 +53,6 @@ class AulasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def aula_params
-      params.require(:aula).permit()
+      params.require(:aula).permit(:docente_id)
     end
 end
