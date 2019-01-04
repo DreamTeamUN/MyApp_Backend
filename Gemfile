@@ -76,3 +76,6 @@ gem 'byebug'
 
 #Para definir variables de entorno ENV
 gem 'figaro'
+
+#Para definir CronJobs
+gem "whenever"

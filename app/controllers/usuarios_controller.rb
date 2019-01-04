@@ -17,6 +17,7 @@ class UsuariosController < ApplicationController
   # POST /usuarios
   def create
     @usuario = Usuario.new(usuario_params)
+    @usuario.last_login = Date.today
 
     if params[:tipo_usuario_id] != 0
       @usuario.tipo_usuario_id = params[:tipo_usuario_id]
