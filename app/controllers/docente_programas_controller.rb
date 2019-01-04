@@ -15,19 +15,10 @@ class DocenteProgramasController < ApplicationController
 
   # POST /docente_programas
   def create
-    @docente_programa = DocentePrograma.new(docente_programa_params)
+    @docente_programa = DocentePrograma.new( docente_id: params[:docente_id], programa_id: params[:programa_id])
 
     if @docente_programa.save
       render json: @docente_programa, status: :created, location: @docente_programa
-    else
-      render json: @docente_programa.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /docente_programas/1
-  def update
-    if @docente_programa.update(docente_programa_params)
-      render json: @docente_programa
     else
       render json: @docente_programa.errors, status: :unprocessable_entity
     end
@@ -44,8 +35,4 @@ class DocenteProgramasController < ApplicationController
       @docente_programa = DocentePrograma.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def docente_programa_params
-      params.require(:docente_programa).permit(:docente_id, :programa_id)
-    end
 end

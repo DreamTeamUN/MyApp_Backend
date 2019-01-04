@@ -15,7 +15,7 @@ class EstudianteAulasController < ApplicationController
 
   # POST /estudiante_aulas
   def create
-    @estudiante_aula = EstudianteAula.new(estudiante_aula_params)
+    @estudiante_aula = EstudianteAula.new(estudiante_id: params[:estudiante_id], aula_id: params[:aula_id])
 
     if @estudiante_aula.save
       render json: @estudiante_aula, status: :created, location: @estudiante_aula
@@ -46,6 +46,6 @@ class EstudianteAulasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def estudiante_aula_params
-      params.require(:estudiante_aula).permit(:aula_id, :estudiante_id)
+      params.require(:estudiante_aula).permit()
     end
 end

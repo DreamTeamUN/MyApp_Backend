@@ -8,6 +8,8 @@
 #
 
 class AulaSerializer < ActiveModel::Serializer
-  attributes :id, :docente_programa_id
-  
+  attributes :id, :docente_id, :programa
+
+  has_many :estudiante
+
 end

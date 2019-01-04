@@ -19,10 +19,12 @@ Rails.application.routes.draw do
 ##Aulas
 
   resources :docente_programas, only: [] do
-    resources :aulas, only: [:create, :index]
+    resources :aulas, only: [:create]
   end
 
   resources :aulas, except: [:create, :index]
+
+  get 'aulas/:tipo/:id/:page' => 'aulas#index'
 
 ##Docente-Programa
 
@@ -80,7 +82,7 @@ Rails.application.routes.draw do
     resources :estudiantes, only: [:index, :create]
   end
 
-  resources :estudiantes, only: [:index, :show]
+  resources :estudiantes, only: [:show]
 
 ##FrasesPNL
 
