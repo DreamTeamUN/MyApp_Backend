@@ -2,12 +2,10 @@
    tipo_juego_frase_archivo_archivo_juegos POST   /tipo_juego/:tipo_juego_id/frase/:frase_id/archivo/:archivo_id/archivo_juegos(.:format)           archivo_juegos#create
                              archivo_juego GET    /archivo_juegos/:id(.:format)                                                                     archivo_juegos#show
                                            DELETE /archivo_juegos/:id(.:format)                                                                     archivo_juegos#destroy
-                                  archivos GET    /archivos(.:format)                                                                               archivos#index
-                                           POST   /archivos(.:format)                                                                               archivos#create
+                                  archivos POST   /archivos(.:format)                                                                               archivos#create
                                    archivo GET    /archivos/:id(.:format)                                                                           archivos#show
-                                           PATCH  /archivos/:id(.:format)                                                                           archivos#update
-                                           PUT    /archivos/:id(.:format)                                                                           archivos#update
                                            DELETE /archivos/:id(.:format)                                                                           archivos#destroy
+                                           GET    /archivos/:tipo/:id/:page(.:format)                                                               archivos#index
                     docente_programa_aulas POST   /docente_programas/:docente_programa_id/aulas(.:format)                                           aulas#create
                                       aula GET    /aulas/:id(.:format)                                                                              aulas#show
                                            PATCH  /aulas/:id(.:format)                                                                              aulas#update

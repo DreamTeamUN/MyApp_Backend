@@ -27,6 +27,9 @@ class Archivo < ApplicationRecord
   validates :tipo_archivo, inclusion: { in: ["imagen", "audio", "archivo", "pdf"] }
   validates :extension, inclusion: { in: ["png", "jpg", "jpeg", "pdf", "mp3"] }
 
-
+  #Consultas
+  def self.by_tipo_archivo( tipo_archivo, page )
+    where("tipo_archivo == ?", tipo_archivo).paginate(page: page, per_page: 10)
+  end
 
 end

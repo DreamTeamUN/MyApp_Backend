@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 
 ##Archivo
 
-  resources :archivos
+  resources :archivos, except: [:index, :update]
+
+  get 'archivos/:tipo/:id/:page' => 'archivos#index'
 
 ##Aulas
 
