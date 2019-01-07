@@ -19,7 +19,7 @@ class Aula < ApplicationRecord
 
   #Validaciones
 
-  validates :nombre, presence: true, length: { maximum: 20, minimum: 3}
+  validates :nombre, presence: true, uniqueness: true, length: { maximum: 20, minimum: 3}
 
   #Consultas
   def self.by_programa( programa_id, page )
