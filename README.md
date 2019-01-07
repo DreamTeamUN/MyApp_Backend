@@ -17,6 +17,10 @@ Para crear un *Aula* es necesario hacer una peticion *POST* a la ruta:
 `/docente_programas/:docente_programa_id/aulas`
     * ***:docente_programa_id*** Es el id de la entidad que verifica que un docente determinado imparte un programa.
 
+    Adicionalmente es necesario pasar un objeto *JSON* llamado aula con los campos:
+        * **nombre** Nombre del aula, debe ser unico (Entre 3 a 20 caracteres).
+        * **descripcion** (*opcional*) Descripcion del aula.
+
   * **Index**
 Para poder listar las aulas se hace una peticion *GET* a la ruta:
 `/aulas/:tipo/:id/:page`
