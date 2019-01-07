@@ -3,9 +3,14 @@ class ArchivosController < ApplicationController
 
   # GET /archivos
   def index
-    @archivos = Archivo.all
+    case params[:tipo]
+    when "1"
+      @archivo_juegos = ArchivoJuego.by_frase(params[:id], params[:page])
+    when "2"
+      @archivo_juegos = ArchivoJuego.by_tipo_juego(params[:id], params[:page])
+    end
 
-    render json: @archivos
+    render json: @archivo_juegos
   end
 
   # GET /archivos/1

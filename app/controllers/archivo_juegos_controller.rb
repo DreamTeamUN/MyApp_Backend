@@ -1,21 +1,15 @@
 class ArchivoJuegosController < ApplicationController
   before_action :set_archivo_juego, only: [:show, :update, :destroy]
 
-  # GET /archivo_juegos
-  def index
-    @archivo_juegos = ArchivoJuego.all
-
-    render json: @archivo_juegos
-  end
-
-  # GET /archivo_juegos/1
+  # GET /archivo_juegos/:id
   def show
     render json: @archivo_juego
   end
 
-  # POST /archivo_juegos
+  # POST /tipo_juego/:tipo_juego_id/frase/:frase_id/archivo/:archivo_id/archivo_juegos
   def create
-    @archivo_juego = ArchivoJuego.new(archivo_juego_params)
+    @archivo_juego = ArchivoJuego.new(
+      tipo_juego_id: params[:tipo_juego_id], frase_id: params[:frase_id], archivo_id: params[:archivo_id])
 
     if @archivo_juego.save
       render json: @archivo_juego, status: :created, location: @archivo_juego
@@ -24,18 +18,10 @@ class ArchivoJuegosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /archivo_juegos/1
-  def update
-    if @archivo_juego.update(archivo_juego_params)
-      render json: @archivo_juego
-    else
-      render json: @archivo_juego.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /archivo_juegos/1
+  # DELETE /archivo_juegos/:id
   def destroy
     @archivo_juego.destroy
+    render status: :ok
   end
 
   private
@@ -46,6 +32,6 @@ class ArchivoJuegosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def archivo_juego_params
-      params.require(:archivo_juego).permit(:tipo_juego_id, :archivo_id, :frase_id)
+      params.require(:archivo_juego).permit()
     end
 end

@@ -2,15 +2,15 @@ Rails.application.routes.draw do
 
 ##Archivo-Juego
 
-  resources :archivos, only: [] do
-    resources :tipo_juegos, only: [] do
-      resources :frase, only: [] do
-        resources :archivo_juegos, only: [:create, :index]
+  resources :tipo_juego, only: [] do
+    resources :frase, only: [] do
+      resources :archivo, only: [] do
+        resources :archivo_juegos, only: [:create]
       end
     end
   end
 
-  resources :archivo_juegos, except: [:create, :index]
+  resources :archivo_juegos, only: [:destroy, :show]
 
 ##Archivo
 

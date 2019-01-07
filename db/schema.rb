@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_07_022703) do
+ActiveRecord::Schema.define(version: 2019_01_07_203959) do
 
   create_table "archivo_juegos", force: :cascade do |t|
     t.integer "tipo_juego_id", null: false
     t.integer "archivo_id", null: false
     t.integer "frase_id"
+    t.index ["archivo_id", "frase_id", "tipo_juego_id"], name: "archivo_frase_tipo_index", unique: true
     t.index ["archivo_id"], name: "index_archivo_juegos_on_archivo_id"
     t.index ["frase_id"], name: "index_archivo_juegos_on_frase_id"
     t.index ["tipo_juego_id"], name: "index_archivo_juegos_on_tipo_juego_id"

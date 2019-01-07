@@ -17,4 +17,15 @@ class ArchivoJuego < ApplicationRecord
 
   #Validaciones
 
+  validates :frase_id, presence: true
+
+  #Consultas
+  def self.by_frase( frase_id, page )
+    where("frase_id == ?", frase_id).paginate(page: page, per_page: 10)
+  end
+
+  def self.by_tipo_juego( tipo_juego_id, page )
+    where("tipo_juego_id == ?", tipo_juego_id).paginate(page: page, per_page: 10)
+  end
+
 end

@@ -1,9 +1,6 @@
                                     Prefix Verb   URI Pattern                                                                                       Controller#Action
-   archivo_tipo_juego_frase_archivo_juegos GET    /archivos/:archivo_id/tipo_juegos/:tipo_juego_id/frase/:frase_id/archivo_juegos(.:format)         archivo_juegos#index
-                                           POST   /archivos/:archivo_id/tipo_juegos/:tipo_juego_id/frase/:frase_id/archivo_juegos(.:format)         archivo_juegos#create
+   tipo_juego_frase_archivo_archivo_juegos POST   /tipo_juego/:tipo_juego_id/frase/:frase_id/archivo/:archivo_id/archivo_juegos(.:format)           archivo_juegos#create
                              archivo_juego GET    /archivo_juegos/:id(.:format)                                                                     archivo_juegos#show
-                                           PATCH  /archivo_juegos/:id(.:format)                                                                     archivo_juegos#update
-                                           PUT    /archivo_juegos/:id(.:format)                                                                     archivo_juegos#update
                                            DELETE /archivo_juegos/:id(.:format)                                                                     archivo_juegos#destroy
                                   archivos GET    /archivos(.:format)                                                                               archivos#index
                                            POST   /archivos(.:format)                                                                               archivos#create
