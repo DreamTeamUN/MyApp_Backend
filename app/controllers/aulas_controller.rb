@@ -22,7 +22,9 @@ class AulasController < ApplicationController
   def create
     docente_programa = DocentePrograma.find(params[:docente_programa_id])
 
-    @aula = Aula.new(docente_id: docente_programa.docente_id, programa_id: docente_programa.programa_id)
+    @aula = Aula.new(aula_params)
+    @aula.docente_id = docente_programa.docente_id
+    @aula.programa_id = docente_programa.programa_id
 
     if @aula.save
       render json: @aula, status: :created, location: @aula
@@ -53,6 +55,6 @@ class AulasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def aula_params
-      params.require(:aula).permit(:docente_id)
+      params.require(:aula).permit(:nombre, :descripcion)
     end
 end
