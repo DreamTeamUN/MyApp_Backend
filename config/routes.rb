@@ -87,7 +87,7 @@ Rails.application.routes.draw do
     resources :frase_pnls, only: [:index, :create]
   end
 
-  resources :frase_pnls, except: [:create]
+  resources :frase_pnls, only: [:show, :destroy]
 
 ##Frases
 
@@ -95,7 +95,7 @@ Rails.application.routes.draw do
     resources :frases, only: [:index, :create]
   end
 
-  resources :frases, except: [:index, :create]
+  resources :frases, only: [:show, :destroy]
 
 ##Lecciones
 
@@ -103,7 +103,7 @@ Rails.application.routes.draw do
     resources :leccions, only: [:index, :create]
   end
 
-  resources :leccions, except: [:index, :create]
+  resources :leccions, only: [:show, :destroy, :update] #TODO:Solo se puede cambiar la semana
 
 ##Niveles-Acceso
 

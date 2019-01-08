@@ -36,16 +36,11 @@
                                            DELETE /estudiantes/:id(.:format)                                                                        estudiantes#destroy
                    tipo_usuario_frase_pnls GET    /tipo_usuarios/:tipo_usuario_id/frase_pnls(.:format)                                              frase_pnls#index
                                            POST   /tipo_usuarios/:tipo_usuario_id/frase_pnls(.:format)                                              frase_pnls#create
-                                frase_pnls GET    /frase_pnls(.:format)                                                                             frase_pnls#index
                                  frase_pnl GET    /frase_pnls/:id(.:format)                                                                         frase_pnls#show
-                                           PATCH  /frase_pnls/:id(.:format)                                                                         frase_pnls#update
-                                           PUT    /frase_pnls/:id(.:format)                                                                         frase_pnls#update
                                            DELETE /frase_pnls/:id(.:format)                                                                         frase_pnls#destroy
                             leccion_frases GET    /leccions/:leccion_id/frases(.:format)                                                            frases#index
                                            POST   /leccions/:leccion_id/frases(.:format)                                                            frases#create
                                      frase GET    /frases/:id(.:format)                                                                             frases#show
-                                           PATCH  /frases/:id(.:format)                                                                             frases#update
-                                           PUT    /frases/:id(.:format)                                                                             frases#update
                                            DELETE /frases/:id(.:format)                                                                             frases#destroy
                          programa_leccions GET    /programas/:programa_id/leccions(.:format)                                                        leccions#index
                                            POST   /programas/:programa_id/leccions(.:format)                                                        leccions#create

@@ -8,5 +8,5 @@
 #
 
 class FrasePnlSerializer < ActiveModel::Serializer
-  attributes :id, :frase, :tipo_usuario_id
+  attributes :id, :frase, :tipo_usuario
 end
