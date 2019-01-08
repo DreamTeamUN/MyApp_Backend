@@ -63,13 +63,7 @@ Rails.application.routes.draw do
 
 ##Estudiante-Aula
 
-  resources :aulas, only: [] do
-    resources :estudiante_aulas, only: [:index]
-  end
-
   resources :estudiantes, only: [] do
-    resources :estudiante_aulas, only: [:index]
-
     resources :aulas, only: [] do
       resources :estudiante_aulas, only: [:create]
     end
@@ -77,13 +71,15 @@ Rails.application.routes.draw do
 
   resources :estudiante_aulas, only: [:show, :destroy]
 
+  get 'estudiante_aulas/:tipo/:id/:page' => 'estudiante_aulas#index'
+
 ##Estudiantes
 
   resources :tutors, only: [] do
     resources :estudiantes, only: [:index, :create]
   end
 
-  resources :estudiantes, only: [:show]
+  resources :estudiantes, except: [:index, :create]
 
 ##FrasesPNL
 

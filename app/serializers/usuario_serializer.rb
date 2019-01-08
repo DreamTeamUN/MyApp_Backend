@@ -16,7 +16,7 @@
 #
 
 class UsuarioSerializer < ActiveModel::Serializer
-  attributes :id, :user, :nombre, :email, :fecha_nacimiento, :tipo_usuario_id, :archivo_id
+  attributes :id, :user, :nombre, :email, :last_login, :tipo_usuario, :archivo
 
   has_one :tutor
   has_one :docente

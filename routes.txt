@@ -24,14 +24,16 @@
                                            PUT    /entradas/:id(.:format)                                                                           entradas#update
                                            DELETE /entradas/:id(.:format)                                                                           entradas#destroy
                                            GET    /entradas/:tipo/:id/:page(.:format)                                                               entradas#index
-                     aula_estudiante_aulas GET    /aulas/:aula_id/estudiante_aulas(.:format)                                                        estudiante_aulas#index
-               estudiante_estudiante_aulas GET    /estudiantes/:estudiante_id/estudiante_aulas(.:format)                                            estudiante_aulas#index
           estudiante_aula_estudiante_aulas POST   /estudiantes/:estudiante_id/aulas/:aula_id/estudiante_aulas(.:format)                             estudiante_aulas#create
                            estudiante_aula GET    /estudiante_aulas/:id(.:format)                                                                   estudiante_aulas#show
                                            DELETE /estudiante_aulas/:id(.:format)                                                                   estudiante_aulas#destroy
+                                           GET    /estudiante_aulas/:tipo/:id/:page(.:format)                                                       estudiante_aulas#index
                          tutor_estudiantes GET    /tutors/:tutor_id/estudiantes(.:format)                                                           estudiantes#index
                                            POST   /tutors/:tutor_id/estudiantes(.:format)                                                           estudiantes#create
                                 estudiante GET    /estudiantes/:id(.:format)                                                                        estudiantes#show
+                                           PATCH  /estudiantes/:id(.:format)                                                                        estudiantes#update
+                                           PUT    /estudiantes/:id(.:format)                                                                        estudiantes#update
+                                           DELETE /estudiantes/:id(.:format)                                                                        estudiantes#destroy
                    tipo_usuario_frase_pnls GET    /tipo_usuarios/:tipo_usuario_id/frase_pnls(.:format)                                              frase_pnls#index
                                            POST   /tipo_usuarios/:tipo_usuario_id/frase_pnls(.:format)                                              frase_pnls#create
                                 frase_pnls GET    /frase_pnls(.:format)                                                                             frase_pnls#index
