@@ -12,13 +12,12 @@
                                            PUT    /aulas/:id(.:format)                                                                              aulas#update
                                            DELETE /aulas/:id(.:format)                                                                              aulas#destroy
                                            GET    /aulas/:tipo/:id/:page(.:format)                                                                  aulas#index
-                 docente_docente_programas GET    /docentes/:docente_id/docente_programas(.:format)                                                 docente_programas#index
-                programa_docente_programas GET    /programas/:programa_id/docente_programas(.:format)                                               docente_programas#index
         programa_docente_docente_programas POST   /programas/:programa_id/docentes/:docente_id/docente_programas(.:format)                          docente_programas#create
                           docente_programa GET    /docente_programas/:id(.:format)                                                                  docente_programas#show
                                            DELETE /docente_programas/:id(.:format)                                                                  docente_programas#destroy
-                                  docentes GET    /docentes(.:format)                                                                               docentes#index
-                                   docente GET    /docentes/:id(.:format)                                                                           docentes#show
+                                           GET    /docente_programas/:tipo/:id/:page(.:format)                                                      docente_programas#index
+                                           GET    /docentes/:page(.:format)                                                                         docentes#index
+                                           GET    /docente/:id(.:format)                                                                            docentes#show
                   usuario_entrada_entradas POST   /usuarios/:usuario_id/entradas/:entrada_id/entradas(.:format)                                     entradas#create
                                    entrada GET    /entradas/:id(.:format)                                                                           entradas#show
                                            PATCH  /entradas/:id(.:format)                                                                           entradas#update

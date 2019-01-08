@@ -30,12 +30,7 @@ Rails.application.routes.draw do
 
 ##Docente-Programa
 
-  resources :docentes, only: [] do
-    resources :docente_programas, only: [:index]
-  end
-
   resources :programas, only: [] do
-    resources :docente_programas, only: [:index]
 
     resources :docentes, only: [] do
       resources :docente_programas, only: [:create]
@@ -44,9 +39,13 @@ Rails.application.routes.draw do
 
   resources :docente_programas, only: [:show, :destroy]
 
+  get 'docente_programas/:tipo/:id/:page' => 'docente_programas#index'
+
 ##Docentes
 
-  resources :docentes, only: [:index, :show]
+  get 'docentes/:page' => 'docentes#index'
+
+  get 'docente/:id' => 'docentes#show'
 
 ##Entradas
 
