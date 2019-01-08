@@ -1,7 +1,7 @@
 class AulasController < ApplicationController
   before_action :set_aula, only: [:show, :update, :destroy]
 
-  # GET /aulas
+  # GET /aulas/:tipo/:id/:page
   def index
     case params[:tipo]
     when "1"
@@ -13,12 +13,12 @@ class AulasController < ApplicationController
     render json: @aulas
   end
 
-  # GET /aulas/1
+  # GET /aulas/:id
   def show
     render json: @aula
   end
 
-  # POST /aulas
+  # POST /docente_programas/:docente_programa_id/aulas
   def create
     docente_programa = DocentePrograma.find(params[:docente_programa_id])
 
@@ -33,7 +33,7 @@ class AulasController < ApplicationController
     end
   end
 
-  # PATCH/PUT /aulas/1
+  # PATCH/PUT /aulas/:id
   def update
     if @aula.update(aula_params)
       render json: @aula
@@ -42,9 +42,10 @@ class AulasController < ApplicationController
     end
   end
 
-  # DELETE /aulas/1
+  # DELETE /aulas/:id
   def destroy
     @aula.destroy
+    render status: :ok
   end
 
   private

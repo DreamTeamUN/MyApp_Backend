@@ -2,19 +2,21 @@ Rails.application.routes.draw do
 
 ##Archivo-Juego
 
-  resources :archivos, only: [] do
-    resources :tipo_juegos, only: [] do
-      resources :frase, only: [] do
-        resources :archivo_juegos, only: [:create, :index]
+  resources :tipo_juego, only: [] do
+    resources :frase, only: [] do
+      resources :archivo, only: [] do
+        resources :archivo_juegos, only: [:create]
       end
     end
   end
 
-  resources :archivo_juegos, except: [:create, :index]
+  resources :archivo_juegos, only: [:destroy, :show]
 
 ##Archivo
 
-  resources :archivos
+  resources :archivos, except: [:index, :update]
+
+  get 'archivos/:tipo/:id/:page' => 'archivos#index'
 
 ##Aulas
 
@@ -28,12 +30,7 @@ Rails.application.routes.draw do
 
 ##Docente-Programa
 
-  resources :docentes, only: [] do
-    resources :docente_programas, only: [:index]
-  end
-
   resources :programas, only: [] do
-    resources :docente_programas, only: [:index]
 
     resources :docentes, only: [] do
       resources :docente_programas, only: [:create]
@@ -42,9 +39,13 @@ Rails.application.routes.draw do
 
   resources :docente_programas, only: [:show, :destroy]
 
+  get 'docente_programas/:tipo/:id/:page' => 'docente_programas#index'
+
 ##Docentes
 
-  resources :docentes, only: [:index, :show]
+  get 'docentes/:page' => 'docentes#index'
+
+  get 'docente/:id' => 'docentes#show'
 
 ##Entradas
 
@@ -62,13 +63,7 @@ Rails.application.routes.draw do
 
 ##Estudiante-Aula
 
-  resources :aulas, only: [] do
-    resources :estudiante_aulas, only: [:index]
-  end
-
   resources :estudiantes, only: [] do
-    resources :estudiante_aulas, only: [:index]
-
     resources :aulas, only: [] do
       resources :estudiante_aulas, only: [:create]
     end
@@ -76,13 +71,15 @@ Rails.application.routes.draw do
 
   resources :estudiante_aulas, only: [:show, :destroy]
 
+  get 'estudiante_aulas/:tipo/:id/:page' => 'estudiante_aulas#index'
+
 ##Estudiantes
 
   resources :tutors, only: [] do
     resources :estudiantes, only: [:index, :create]
   end
 
-  resources :estudiantes, only: [:show]
+  resources :estudiantes, except: [:index, :create]
 
 ##FrasesPNL
 

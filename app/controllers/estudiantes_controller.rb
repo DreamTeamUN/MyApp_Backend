@@ -1,9 +1,13 @@
 class EstudiantesController < ApplicationController
   before_action :set_estudiante, only: [:show, :update, :destroy]
 
-  # GET /estudiantes
+  # GET /tutors/:tutor_id/estudiantes
   def index
-    @estudiantes = Tutor.find(params[:tutor_id]).estudiante
+    if params[:tutor_id].to_i < 1
+      @estudiantes = Estudiante.all
+    else
+      @estudiantes = Tutor.find(params[:tutor_id]).estudiante
+    end
 
     render json: @estudiantes
   end
@@ -28,7 +32,7 @@ class EstudiantesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /estudiantes/1
+  # PATCH/PUT /estudiantes/:id
   def update
     if @estudiante.update(estudiante_params)
       render json: @estudiante
@@ -40,6 +44,7 @@ class EstudiantesController < ApplicationController
   # DELETE /estudiantes/1
   def destroy
     @estudiante.destroy
+    render status: :ok
   end
 
   private

@@ -1,43 +1,39 @@
                                     Prefix Verb   URI Pattern                                                                                       Controller#Action
-   archivo_tipo_juego_frase_archivo_juegos GET    /archivos/:archivo_id/tipo_juegos/:tipo_juego_id/frase/:frase_id/archivo_juegos(.:format)         archivo_juegos#index
-                                           POST   /archivos/:archivo_id/tipo_juegos/:tipo_juego_id/frase/:frase_id/archivo_juegos(.:format)         archivo_juegos#create
+   tipo_juego_frase_archivo_archivo_juegos POST   /tipo_juego/:tipo_juego_id/frase/:frase_id/archivo/:archivo_id/archivo_juegos(.:format)           archivo_juegos#create
                              archivo_juego GET    /archivo_juegos/:id(.:format)                                                                     archivo_juegos#show
-                                           PATCH  /archivo_juegos/:id(.:format)                                                                     archivo_juegos#update
-                                           PUT    /archivo_juegos/:id(.:format)                                                                     archivo_juegos#update
                                            DELETE /archivo_juegos/:id(.:format)                                                                     archivo_juegos#destroy
-                                  archivos GET    /archivos(.:format)                                                                               archivos#index
-                                           POST   /archivos(.:format)                                                                               archivos#create
+                                  archivos POST   /archivos(.:format)                                                                               archivos#create
                                    archivo GET    /archivos/:id(.:format)                                                                           archivos#show
-                                           PATCH  /archivos/:id(.:format)                                                                           archivos#update
-                                           PUT    /archivos/:id(.:format)                                                                           archivos#update
                                            DELETE /archivos/:id(.:format)                                                                           archivos#destroy
+                                           GET    /archivos/:tipo/:id/:page(.:format)                                                               archivos#index
                     docente_programa_aulas POST   /docente_programas/:docente_programa_id/aulas(.:format)                                           aulas#create
                                       aula GET    /aulas/:id(.:format)                                                                              aulas#show
                                            PATCH  /aulas/:id(.:format)                                                                              aulas#update
                                            PUT    /aulas/:id(.:format)                                                                              aulas#update
                                            DELETE /aulas/:id(.:format)                                                                              aulas#destroy
                                            GET    /aulas/:tipo/:id/:page(.:format)                                                                  aulas#index
-                 docente_docente_programas GET    /docentes/:docente_id/docente_programas(.:format)                                                 docente_programas#index
-                programa_docente_programas GET    /programas/:programa_id/docente_programas(.:format)                                               docente_programas#index
         programa_docente_docente_programas POST   /programas/:programa_id/docentes/:docente_id/docente_programas(.:format)                          docente_programas#create
                           docente_programa GET    /docente_programas/:id(.:format)                                                                  docente_programas#show
                                            DELETE /docente_programas/:id(.:format)                                                                  docente_programas#destroy
-                                  docentes GET    /docentes(.:format)                                                                               docentes#index
-                                   docente GET    /docentes/:id(.:format)                                                                           docentes#show
+                                           GET    /docente_programas/:tipo/:id/:page(.:format)                                                      docente_programas#index
+                                           GET    /docentes/:page(.:format)                                                                         docentes#index
+                                           GET    /docente/:id(.:format)                                                                            docentes#show
                   usuario_entrada_entradas POST   /usuarios/:usuario_id/entradas/:entrada_id/entradas(.:format)                                     entradas#create
                                    entrada GET    /entradas/:id(.:format)                                                                           entradas#show
                                            PATCH  /entradas/:id(.:format)                                                                           entradas#update
                                            PUT    /entradas/:id(.:format)                                                                           entradas#update
                                            DELETE /entradas/:id(.:format)                                                                           entradas#destroy
                                            GET    /entradas/:tipo/:id/:page(.:format)                                                               entradas#index
-                     aula_estudiante_aulas GET    /aulas/:aula_id/estudiante_aulas(.:format)                                                        estudiante_aulas#index
-               estudiante_estudiante_aulas GET    /estudiantes/:estudiante_id/estudiante_aulas(.:format)                                            estudiante_aulas#index
           estudiante_aula_estudiante_aulas POST   /estudiantes/:estudiante_id/aulas/:aula_id/estudiante_aulas(.:format)                             estudiante_aulas#create
                            estudiante_aula GET    /estudiante_aulas/:id(.:format)                                                                   estudiante_aulas#show
                                            DELETE /estudiante_aulas/:id(.:format)                                                                   estudiante_aulas#destroy
+                                           GET    /estudiante_aulas/:tipo/:id/:page(.:format)                                                       estudiante_aulas#index
                          tutor_estudiantes GET    /tutors/:tutor_id/estudiantes(.:format)                                                           estudiantes#index
                                            POST   /tutors/:tutor_id/estudiantes(.:format)                                                           estudiantes#create
                                 estudiante GET    /estudiantes/:id(.:format)                                                                        estudiantes#show
+                                           PATCH  /estudiantes/:id(.:format)                                                                        estudiantes#update
+                                           PUT    /estudiantes/:id(.:format)                                                                        estudiantes#update
+                                           DELETE /estudiantes/:id(.:format)                                                                        estudiantes#destroy
                    tipo_usuario_frase_pnls GET    /tipo_usuarios/:tipo_usuario_id/frase_pnls(.:format)                                              frase_pnls#index
                                            POST   /tipo_usuarios/:tipo_usuario_id/frase_pnls(.:format)                                              frase_pnls#create
                                 frase_pnls GET    /frase_pnls(.:format)                                                                             frase_pnls#index

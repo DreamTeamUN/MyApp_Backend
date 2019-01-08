@@ -1,9 +1,14 @@
 class DocenteProgramasController < ApplicationController
   before_action :set_docente_programa, only: [:show, :update, :destroy]
 
-  # GET /docente_programas
+  # GET docente_programas/:tipo/:id/:page
   def index
-    @docente_programas = DocentePrograma.all
+    case params[:tipo]
+    when "1"
+      @docente_programas = DocentePrograma.by_programa(params[:id], params[:page])
+    when "2"
+      @docente_programas = DocentePrograma.by_docente(params[:id], params[:page])
+    end
 
     render json: @docente_programas
   end
@@ -13,7 +18,7 @@ class DocenteProgramasController < ApplicationController
     render json: @docente_programa
   end
 
-  # POST /docente_programas
+  # POST /programas/:programa_id/docentes/:docente_id/docente_programas
   def create
     @docente_programa = DocentePrograma.new( docente_id: params[:docente_id], programa_id: params[:programa_id])
 
@@ -27,6 +32,7 @@ class DocenteProgramasController < ApplicationController
   # DELETE /docente_programas/1
   def destroy
     @docente_programa.destroy
+    render status: :ok
   end
 
   private
