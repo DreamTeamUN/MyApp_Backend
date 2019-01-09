@@ -27,6 +27,7 @@ class AulasController < ApplicationController
     @aula.programa_id = docente_programa.programa_id
 
     if @aula.save
+      RegistroActividad.create(usuario_id: @aula.docente.usuario_id, tipo_actividad_id: 9, ip_origen: request.remote_ip)
       render json: @aula, status: :created, location: @aula
     else
       render json: @aula.errors, status: :unprocessable_entity
@@ -36,6 +37,7 @@ class AulasController < ApplicationController
   # PATCH/PUT /aulas/:id
   def update
     if @aula.update(aula_params)
+      RegistroActividad.create(usuario_id: @aula.docente.usuario_id, tipo_actividad_id: 17, ip_origen: request.remote_ip)
       render json: @aula
     else
       render json: @aula.errors, status: :unprocessable_entity
@@ -45,6 +47,7 @@ class AulasController < ApplicationController
   # DELETE /aulas/:id
   def destroy
     @aula.destroy
+    RegistroActividad.create(usuario_id: @aula.docente.usuario_id, tipo_actividad_id: 12, ip_origen: request.remote_ip)
     render status: :ok
   end
 

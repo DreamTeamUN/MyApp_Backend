@@ -5,7 +5,7 @@ class RegistroActividadsController < ApplicationController
   def index
     @registro_actividads = RegistroActividad.all
 
-    render json: @registro_actividads
+    render json: request.remote_ip
   end
 
   # GET /registro_actividads/1
