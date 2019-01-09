@@ -23,6 +23,7 @@ class EstudianteAulasController < ApplicationController
     @estudiante_aula = EstudianteAula.new(estudiante_id: params[:estudiante_id], aula_id: params[:aula_id])
 
     if @estudiante_aula.save
+      RegistroActividad.create(usuario_id: @estudiante_aula.estudiante.tutor.usuario_id, tipo_actividad_id: 10, ip_origen: request.remote_ip)
       render json: @estudiante_aula, status: :created, location: @estudiante_aula
     else
       render json: @estudiante_aula.errors, status: :unprocessable_entity
@@ -32,6 +33,7 @@ class EstudianteAulasController < ApplicationController
   # DELETE /estudiante_aulas/:id
   def destroy
     @estudiante_aula.destroy
+    RegistroActividad.create(usuario_id: @estudiante_aula.estudiante.tutor.usuario_id, tipo_actividad_id: 21, ip_origen: request.remote_ip)
     render status: :ok
   end
 

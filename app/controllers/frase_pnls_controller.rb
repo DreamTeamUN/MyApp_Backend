@@ -18,6 +18,7 @@ class FrasePnlsController < ApplicationController
     @frase_pnl = FrasePnl.new(frase_pnl_params)
 
     if @frase_pnl.save
+      RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 22, ip_origen: request.remote_ip)
       render json: @frase_pnl, status: :created, location: @frase_pnl
     else
       render json: @frase_pnl.errors, status: :unprocessable_entity
@@ -35,6 +36,7 @@ class FrasePnlsController < ApplicationController
 
   # DELETE /frase_pnls/1
   def destroy
+    RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 23, ip_origen: request.remote_ip)
     @frase_pnl.destroy
   end
 

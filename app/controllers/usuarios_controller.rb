@@ -31,16 +31,22 @@ class UsuariosController < ApplicationController
 
         @trigger = Tutor.new(usuario_id: @usuario.id)
         text = "tutor"
+        actividad = 27
 
       when 2 #Docente
 
         @trigger = Docente.new(usuario_id: @usuario.id)
         text = "docente"
+        actividad = 28
 
       end
 
       if @trigger.save
         WelcomeMailer.with(usuario: @usuario).welcome_email.deliver
+
+        RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 26, ip_origen: request.remote_ip)
+        RegistroActividad.create(usuario_id: @usuario.id, tipo_actividad_id: actividad, ip_origen: request.remote_ip)
+
         render json: {"usuario": @usuario,"#{text}": @trigger}, status: :created, location: @usuario
       else
         @usuario.destroy
@@ -64,6 +70,7 @@ class UsuariosController < ApplicationController
   # DELETE /usuarios/1
   def destroy
     @usuario.destroy
+    RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 29, ip_origen: request.remote_ip)
   end
 
   private
