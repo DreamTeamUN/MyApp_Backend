@@ -15,6 +15,8 @@
   a.save!
 
   NivelAcceso.create(id: 0, nombre: "PUBLICO")
+  NivelAcceso.create(nombre: "Docentes")
+  NivelAcceso.create(nombre: "Tutores")
 
   Usuario.create(id: 0, user: "sistema", password:"sistema", password_confirmation:"sistema",
           nombre: "sistema", email:"ysmiapp@gmail.com", tipo_usuario_id: 0, archivo_id:0, last_login: Date.today)

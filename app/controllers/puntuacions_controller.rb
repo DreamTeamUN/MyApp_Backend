@@ -1,41 +1,37 @@
 class PuntuacionsController < ApplicationController
   before_action :set_puntuacion, only: [:show, :update, :destroy]
 
-  # GET /puntuacions
+  # GET /puntuacions/:tipo/:id/:page
   def index
-    @puntuacions = Puntuacion.all
+    case params[:tipo]
+    when "1"
+      @puntuacions = Puntuacion.by_estudiante(params[:id], params[:page])
+    when "2"
+      @puntuacions = Puntuacion.by_leccion(params[:id], params[:page])
+    when "3"
+      @puntuacions = Puntuacion.by_tipo_juego(params[:id], params[:page])
+    end
 
     render json: @puntuacions
   end
 
-  # GET /puntuacions/1
+  # GET /puntuacions/:id
   def show
     render json: @puntuacion
   end
 
-  # POST /puntuacions
+  # POST /estudiantes/:estudiante_id/leccions/:leccion_id/tipo_juegos/:tipo_juego_id/puntuacions
   def create
     @puntuacion = Puntuacion.new(puntuacion_params)
+    @puntuacion.estudiante_id = params[:estudiante_id]
+    @puntuacion.leccion_id = params[:leccion_id]
+    @puntuacion.tipo_juego_id = params[:tipo_juego_id]
 
     if @puntuacion.save
       render json: @puntuacion, status: :created, location: @puntuacion
     else
       render json: @puntuacion.errors, status: :unprocessable_entity
     end
-  end
-
-  # PATCH/PUT /puntuacions/1
-  def update
-    if @puntuacion.update(puntuacion_params)
-      render json: @puntuacion
-    else
-      render json: @puntuacion.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /puntuacions/1
-  def destroy
-    @puntuacion.destroy
   end
 
   private
@@ -46,6 +42,6 @@ class PuntuacionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def puntuacion_params
-      params.require(:puntuacion).permit(:puntuacion_obtenida, :tipo_juego_id, :estudiante_id, :leccion_id)
+      params.require(:puntuacion).permit(:puntuacion_obtenida)
     end
 end

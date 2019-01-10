@@ -131,25 +131,17 @@ Rails.application.routes.draw do
 
 ##Puntuaciones
 
-  resources :tipo_juegos, only: [] do
-    resources :puntuacions, only: [:index]
-  end
-
-  resources :leccions, only: [] do
-    resources :puntuacions, only: [:index]
-  end
-
   resources :estudiantes, only: [] do
     resources :leccions, only: [] do
       resources :tipo_juegos, only: [] do
         resources :puntuacions, only: [:create]
       end
     end
-
-    resources :puntuacions, only: [:index]
   end
 
-  resources :puntuacions, only: [:show, :update]
+  resources :puntuacions, only: [:show]
+
+  get 'puntuacions/:tipo/:id/:page' => 'puntuacions#index'
 
 ##Registro-Actividades
 

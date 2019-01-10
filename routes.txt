@@ -59,13 +59,9 @@
                                   progreso GET    /progresos/:id(.:format)                                                                          progresos#show
                                            PATCH  /progresos/:id(.:format)                                                                          progresos#update
                                            PUT    /progresos/:id(.:format)                                                                          progresos#update
-                    tipo_juego_puntuacions GET    /tipo_juegos/:tipo_juego_id/puntuacions(.:format)                                                 puntuacions#index
-                       leccion_puntuacions GET    /leccions/:leccion_id/puntuacions(.:format)                                                       puntuacions#index
  estudiante_leccion_tipo_juego_puntuacions POST   /estudiantes/:estudiante_id/leccions/:leccion_id/tipo_juegos/:tipo_juego_id/puntuacions(.:format) puntuacions#create
-                    estudiante_puntuacions GET    /estudiantes/:estudiante_id/puntuacions(.:format)                                                 puntuacions#index
                                 puntuacion GET    /puntuacions/:id(.:format)                                                                        puntuacions#show
-                                           PATCH  /puntuacions/:id(.:format)                                                                        puntuacions#update
-                                           PUT    /puntuacions/:id(.:format)                                                                        puntuacions#update
+                                           GET    /puntuacions/:tipo/:id/:page(.:format)                                                            puntuacions#index
         tipo_actividad_registro_actividads GET    /tipo_actividads/:tipo_actividad_id/registro_actividads(.:format)                                 registro_actividads#index
 usuario_tipo_actividad_registro_actividads POST   /usuarios/:usuario_id/tipo_actividads/:tipo_actividad_id/registro_actividads(.:format)            registro_actividads#create
                usuario_registro_actividads GET    /usuarios/:usuario_id/registro_actividads(.:format)                                               registro_actividads#index
