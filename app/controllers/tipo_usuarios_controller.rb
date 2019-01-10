@@ -8,34 +8,9 @@ class TipoUsuariosController < ApplicationController
     render json: @tipo_usuarios
   end
 
-  # GET /tipo_usuarios/1
+  # GET /tipo_usuarios/:id
   def show
     render json: @tipo_usuario
-  end
-
-  # POST /tipo_usuarios
-  def create
-    @tipo_usuario = TipoUsuario.new(tipo_usuario_params)
-
-    if @tipo_usuario.save
-      render json: @tipo_usuario, status: :created, location: @tipo_usuario
-    else
-      render json: @tipo_usuario.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /tipo_usuarios/1
-  def update
-    if @tipo_usuario.update(tipo_usuario_params)
-      render json: @tipo_usuario
-    else
-      render json: @tipo_usuario.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /tipo_usuarios/1
-  def destroy
-    @tipo_usuario.destroy
   end
 
   private

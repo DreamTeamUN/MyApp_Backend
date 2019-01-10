@@ -3,49 +3,19 @@ class TutorsController < ApplicationController
 
   # GET /tutors
   def index
-    @tutors = Tutor.all
+    @tutors = Tutor.total(params[:page])
 
     render json: @tutors
   end
 
-  # GET /tutors/1
+  # GET /tutor/:id
   def show
     render json: @tutor
-  end
-
-  # POST /tutors
-  def create
-    @tutor = Tutor.new(tutor_params)
-
-    if @tutor.save
-      render json: @tutor, status: :created, location: @tutor
-    else
-      render json: @tutor.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /tutors/1
-  def update
-    if @tutor.update(tutor_params)
-      render json: @tutor
-    else
-      render json: @tutor.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /tutors/1
-  def destroy
-    @tutor.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tutor
       @tutor = Tutor.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def tutor_params
-      params.require(:tutor).permit(:usuario_id)
     end
 end

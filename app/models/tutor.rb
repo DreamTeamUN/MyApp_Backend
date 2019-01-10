@@ -15,4 +15,9 @@ class Tutor < ApplicationRecord
   #Validaciones
   validates :usuario_id, uniqueness: true
 
+  #Consultas
+  def self.total( page )
+    all.paginate(page: page, per_page: 10)
+  end
+
 end

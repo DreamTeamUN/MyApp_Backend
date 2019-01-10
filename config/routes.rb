@@ -143,29 +143,9 @@ Rails.application.routes.draw do
 
   get 'puntuacions/:tipo/:id/:page' => 'puntuacions#index'
 
-##Registro-Actividades
-
-  resources :tipo_actividads, only: [] do
-    resources :registro_actividads, only: [:index]
-  end
-
-  resources :usuarios, only: [] do
-    resources :tipo_actividads, only: [] do
-      resources :registro_actividads, only: [:create]
-    end
-
-    resources :registro_actividads, only: [:index]
-  end
-
-  resources :registro_actividads, only: [:show]
-
-##Tipo-Actividades
-
-  resources :tipo_actividads, only: [:show, :index, :update]
-
 ##Tipo-Juegos
 
-  resources :tipo_juegos, only: [:show, :index, :update]
+  resources :tipo_juegos, only: [:show, :index]
 
 ##Tipo-Usuarios
 
@@ -173,7 +153,9 @@ Rails.application.routes.draw do
 
 ##Tutores
 
-  resources :tutors, only: [:show, :index]
+  get 'tutors/:page' => 'docentes#index'
+
+  get 'tutor/:id' => 'docentes#show'
 
 ##Usuarios
 
