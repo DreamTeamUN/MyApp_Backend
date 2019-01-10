@@ -160,12 +160,13 @@ Rails.application.routes.draw do
 ##Usuarios
 
   resources :tipo_usuarios, only: [] do
-    resources :usuarios, only: [:index, :create]
+    resources :usuarios, only: [:create]
   end
 
-  resources :usuarios, except: [:create]
+  resources :usuarios, except: [:create, :index]
 
-  ##SocialsController
+##SocialsController
+
   resources :socials, only: [:create]
 
 ##Reporter Controllers

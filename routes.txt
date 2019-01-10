@@ -68,9 +68,7 @@ estudiante_leccion_tipo_juego_puntuacions POST   /estudiantes/:estudiante_id/lec
                              tipo_usuario GET    /tipo_usuarios/:id(.:format)                                                                      tipo_usuarios#show
                                           GET    /tutors/:page(.:format)                                                                           docentes#index
                                           GET    /tutor/:id(.:format)                                                                              docentes#show
-                    tipo_usuario_usuarios GET    /tipo_usuarios/:tipo_usuario_id/usuarios(.:format)                                                usuarios#index
-                                          POST   /tipo_usuarios/:tipo_usuario_id/usuarios(.:format)                                                usuarios#create
-                                 usuarios GET    /usuarios(.:format)                                                                               usuarios#index
+                    tipo_usuario_usuarios POST   /tipo_usuarios/:tipo_usuario_id/usuarios(.:format)                                                usuarios#create
                                   usuario GET    /usuarios/:id(.:format)                                                                           usuarios#show
                                           PATCH  /usuarios/:id(.:format)                                                                           usuarios#update
                                           PUT    /usuarios/:id(.:format)                                                                           usuarios#update
