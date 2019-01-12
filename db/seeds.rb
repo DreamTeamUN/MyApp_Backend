@@ -375,6 +375,7 @@
   TipoActividad.create(nombre: "Creacion tutor", descripcion: "Se crea un nuevo tutor")
   TipoActividad.create(nombre: "Creacion Docente", descripcion: "Se crea un nuevo decente")
   TipoActividad.create(nombre: "Eliminar Usuario", descripcion: "Elimina un usuario")
+  TipoActividad.create(nombre: "Crear Puntuacion", descripcion: "Crea un nuevo registro de puntuacion")
 
   TipoJuego.create(nombre: "Enlaces", descripcion: "Enlazar palabras con su respectiva imagen")
   TipoJuego.create(nombre: "Parejas Imagen", descripcion: "Loteria con las palabras y sus imagenes")

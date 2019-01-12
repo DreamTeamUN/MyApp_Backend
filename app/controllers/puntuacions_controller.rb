@@ -18,7 +18,7 @@ class PuntuacionsController < ApplicationController
     @puntuacion = Puntuacion.new(puntuacion_params)
 
     if @puntuacion.save
-      RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 22, ip_origen: request.remote_ip)
+      RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 30, ip_origen: request.remote_ip)
       render json: @puntuacion, status: :created, location: @puntuacion
     else
       render json: @puntuacion.errors, status: :unprocessable_entity
