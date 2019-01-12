@@ -28,4 +28,8 @@ class ArchivoJuego < ApplicationRecord
     where("tipo_juego_id == ?", tipo_juego_id).paginate(page: page, per_page: 10)
   end
 
+  def self.repetido( tipo_juego_id, archivo_id, frase_id)
+    where("tipo_juego_id == ? AND archivo_id == ? AND frase_id == ?", tipo_juego_id, archivo_id, frase_id)
+  end
+
 end

@@ -20,12 +20,17 @@ class DocenteProgramasController < ApplicationController
 
   # POST /programas/:programa_id/docentes/:docente_id/docente_programas
   def create
-    @docente_programa = DocentePrograma.new( docente_id: params[:docente_id], programa_id: params[:programa_id])
-
-    if @docente_programa.save
-      render json: @docente_programa, status: :created, location: @docente_programa
+    repetido = DocentePrograma.repetido(params[:docente_id], params[:programa_id])
+    if repetido.length > 0
+      render json: repetido, status: :im_used
     else
-      render json: @docente_programa.errors, status: :unprocessable_entity
+      @docente_programa = DocentePrograma.new( docente_id: params[:docente_id], programa_id: params[:programa_id])
+
+      if @docente_programa.save
+        render json: @docente_programa, status: :created, location: @docente_programa
+      else
+        render json: @docente_programa.errors, status: :unprocessable_entity
+      end
     end
   end
 

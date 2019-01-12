@@ -19,13 +19,18 @@ class LeccionsController < ApplicationController
 
   # POST /programas/:programa_id/leccions
   def create
-    @leccion = Leccion.new(leccion_params)
-    @leccion.programa_id = params[:programa_id]
-
-    if @leccion.save
-      render json: @leccion, status: :created, location: @leccion
+    repetido = Leccion.repetido(params[:programa_id], params[:leccion][:semana])
+    if repetido.length > 0
+      render json: repetido, status: :im_used
     else
-      render json: @leccion.errors, status: :unprocessable_entity
+      @leccion = Leccion.new(leccion_params)
+      @leccion.programa_id = params[:programa_id]
+
+      if @leccion.save
+        render json: @leccion, status: :created, location: @leccion
+      else
+        render json: @leccion.errors, status: :unprocessable_entity
+      end
     end
   end
 

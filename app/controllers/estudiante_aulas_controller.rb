@@ -20,12 +20,17 @@ class EstudianteAulasController < ApplicationController
 
   # POST /estudiantes/:estudiante_id/aulas/:aula_id/estudiante_aulas
   def create
-    @estudiante_aula = EstudianteAula.new(estudiante_id: params[:estudiante_id], aula_id: params[:aula_id])
-
-    if @estudiante_aula.save
-      render json: @estudiante_aula, status: :created, location: @estudiante_aula
+    repetido = EstudianteAula.repetido(params[:estudiante_id], params[:aula_id])
+    if repetido.length > 0
+      render json: repetido, status: :im_used
     else
-      render json: @estudiante_aula.errors, status: :unprocessable_entity
+      @estudiante_aula = EstudianteAula.new(estudiante_id: params[:estudiante_id], aula_id: params[:aula_id])
+
+      if @estudiante_aula.save
+        render json: @estudiante_aula, status: :created, location: @estudiante_aula
+      else
+        render json: @estudiante_aula.errors, status: :unprocessable_entity
+      end
     end
   end
 

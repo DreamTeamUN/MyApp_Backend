@@ -8,13 +8,18 @@ class ArchivoJuegosController < ApplicationController
 
   # POST /tipo_juego/:tipo_juego_id/frase/:frase_id/archivo/:archivo_id/archivo_juegos
   def create
-    @archivo_juego = ArchivoJuego.new(
-      tipo_juego_id: params[:tipo_juego_id], frase_id: params[:frase_id], archivo_id: params[:archivo_id])
-
-    if @archivo_juego.save
-      render json: @archivo_juego, status: :created, location: @archivo_juego
+    repetido = ArchivoJuego.repetido(params[:tipo_juego_id], params[:archivo_id], params[:frase_id])
+    if repetido.length > 0
+      render json: repetido, status: :im_used
     else
-      render json: @archivo_juego.errors, status: :unprocessable_entity
+      @archivo_juego = ArchivoJuego.new(
+        tipo_juego_id: params[:tipo_juego_id], frase_id: params[:frase_id], archivo_id: params[:archivo_id])
+
+      if @archivo_juego.save
+        render json: @archivo_juego, status: :created, location: @archivo_juego
+      else
+        render json: @archivo_juego.errors, status: :unprocessable_entity
+      end
     end
   end
 

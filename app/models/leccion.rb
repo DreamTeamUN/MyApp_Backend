@@ -23,4 +23,8 @@ class Leccion < ApplicationRecord
     where("programa_id == ?", programa_id)
   end
 
+  def self.repetido( programa_id, semana)
+    where("programa_id == ? AND semana == ?", programa_id, semana)
+  end
+
 end
