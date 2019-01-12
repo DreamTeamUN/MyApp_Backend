@@ -37,6 +37,10 @@ class EntradasController < ApplicationController
     end
 
     if @entrada.save
+      RegistroActividad.create(usuario_id: params[:usuario_id], tipo_actividad_id: 5, ip_origen: request.remote_ip)
+      if params[:publicado]
+        RegistroActividad.create(usuario_id: params[:usuario_id], tipo_actividad_id: 6, ip_origen: request.remote_ip)
+      end
       render json: @entrada, status: :created, location: @entrada
     else
       render json: @entrada.errors, status: :unprocessable_entity
@@ -47,6 +51,9 @@ class EntradasController < ApplicationController
   # PATCH/PUT /entradas/:id
   def update
     if @entrada.update(entrada_patch)
+      if params[:publicado]
+        RegistroActividad.create(usuario_id: @entrada.usuario_id, tipo_actividad_id: 6, ip_origen: request.remote_ip)
+      end
       render json: @entrada
     else
       render json: @entrada.errors, status: :unprocessable_entity
@@ -56,6 +63,7 @@ class EntradasController < ApplicationController
   # DELETE /entradas/1
   def destroy
     @entrada.destroy
+    RegistroActividad.create(usuario_id: @entrada.usuario_id, tipo_actividad_id: 19, ip_origen: request.remote_ip)
     render status: :ok
   end
 

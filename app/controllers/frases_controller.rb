@@ -22,6 +22,7 @@ class FrasesController < ApplicationController
     @frase.leccion_id = params[:leccion_id]
 
     if @frase.save
+      RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 22, ip_origen: request.remote_ip)
       render json: @frase, status: :created, location: @frase
     else
       render json: @frase.errors, status: :unprocessable_entity
@@ -30,6 +31,7 @@ class FrasesController < ApplicationController
 
   # DELETE /frases/:id
   def destroy
+    RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 23, ip_origen: request.remote_ip)
     @frase.destroy
     render status: :ok
   end

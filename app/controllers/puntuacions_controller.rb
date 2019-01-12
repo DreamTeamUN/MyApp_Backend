@@ -28,6 +28,7 @@ class PuntuacionsController < ApplicationController
     @puntuacion.tipo_juego_id = params[:tipo_juego_id]
 
     if @puntuacion.save
+      RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 30, ip_origen: request.remote_ip)
       render json: @puntuacion, status: :created, location: @puntuacion
     else
       render json: @puntuacion.errors, status: :unprocessable_entity

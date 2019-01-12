@@ -26,17 +26,18 @@ class DocenteProgramasController < ApplicationController
     else
       @docente_programa = DocentePrograma.new( docente_id: params[:docente_id], programa_id: params[:programa_id])
 
-      if @docente_programa.save
-        render json: @docente_programa, status: :created, location: @docente_programa
-      else
-        render json: @docente_programa.errors, status: :unprocessable_entity
-      end
+    if @docente_programa.save
+      RegistroActividad.create(usuario_id: @docente_programa.docente.usuario_id, tipo_actividad_id: 8, ip_origen: request.remote_ip)
+      render json: @docente_programa, status: :created, location: @docente_programa
+    else
+      render json: @docente_programa.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /docente_programas/1
   def destroy
     @docente_programa.destroy
+    RegistroActividad.create(usuario_id: @docente_programa.docente.usuario_id, tipo_actividad_id: 18, ip_origen: request.remote_ip)
     render status: :ok
   end
 

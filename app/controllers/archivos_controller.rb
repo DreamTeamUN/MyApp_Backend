@@ -39,6 +39,7 @@ class ArchivosController < ApplicationController
 
 
     if @archivo.save
+      RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 15, ip_origen: request.remote_ip)
       render json: @archivo, status: :created, location: @archivo
     else
       render json: @archivo.errors, status: :unprocessable_entity
@@ -48,6 +49,7 @@ class ArchivosController < ApplicationController
   # DELETE /archivos/1
   def destroy
     @archivo.destroy
+    RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 16, ip_origen: request.remote_ip)
     render status: :ok
   end
 

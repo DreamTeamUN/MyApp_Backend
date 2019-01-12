@@ -26,11 +26,11 @@ class LeccionsController < ApplicationController
       @leccion = Leccion.new(leccion_params)
       @leccion.programa_id = params[:programa_id]
 
-      if @leccion.save
-        render json: @leccion, status: :created, location: @leccion
-      else
-        render json: @leccion.errors, status: :unprocessable_entity
-      end
+    if @leccion.save
+      RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 24, ip_origen: request.remote_ip)
+      render json: @leccion, status: :created, location: @leccion
+    else
+      render json: @leccion.errors, status: :unprocessable_entity
     end
   end
 
@@ -46,6 +46,7 @@ class LeccionsController < ApplicationController
   # DELETE /leccions/:id
   def destroy
     @leccion.destroy
+    RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 25, ip_origen: request.remote_ip)
     render status: :ok
   end
 
