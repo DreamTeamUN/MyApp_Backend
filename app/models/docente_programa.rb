@@ -24,4 +24,8 @@ class DocentePrograma < ApplicationRecord
     where("docente_id == ?", docente_id).paginate(page: page, per_page: 10)
   end
 
+  def self.repetido( docente_id, programa_id)
+    where("docente_id == ? AND programa_id == ?", docente_id, programa_id)
+  end
+
 end

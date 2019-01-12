@@ -20,9 +20,14 @@ class DocenteProgramasController < ApplicationController
 
   # POST /programas/:programa_id/docentes/:docente_id/docente_programas
   def create
-    @docente_programa = DocentePrograma.new( docente_id: params[:docente_id], programa_id: params[:programa_id])
+    repetido = DocentePrograma.repetido(params[:docente_id], params[:programa_id])
+    if repetido.length > 0
+      render json: repetido, status: :im_used
+    else
+      @docente_programa = DocentePrograma.new( docente_id: params[:docente_id], programa_id: params[:programa_id])
 
     if @docente_programa.save
+      RegistroActividad.create(usuario_id: @docente_programa.docente.usuario_id, tipo_actividad_id: 8, ip_origen: request.remote_ip)
       render json: @docente_programa, status: :created, location: @docente_programa
     else
       render json: @docente_programa.errors, status: :unprocessable_entity
@@ -32,6 +37,7 @@ class DocenteProgramasController < ApplicationController
   # DELETE /docente_programas/1
   def destroy
     @docente_programa.destroy
+    RegistroActividad.create(usuario_id: @docente_programa.docente.usuario_id, tipo_actividad_id: 18, ip_origen: request.remote_ip)
     render status: :ok
   end
 

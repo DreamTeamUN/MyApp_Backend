@@ -8,34 +8,9 @@ class TipoJuegosController < ApplicationController
     render json: @tipo_juegos
   end
 
-  # GET /tipo_juegos/1
+  # GET /tipo_juegos/:id
   def show
     render json: @tipo_juego
-  end
-
-  # POST /tipo_juegos
-  def create
-    @tipo_juego = TipoJuego.new(tipo_juego_params)
-
-    if @tipo_juego.save
-      render json: @tipo_juego, status: :created, location: @tipo_juego
-    else
-      render json: @tipo_juego.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /tipo_juegos/1
-  def update
-    if @tipo_juego.update(tipo_juego_params)
-      render json: @tipo_juego
-    else
-      render json: @tipo_juego.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /tipo_juegos/1
-  def destroy
-    @tipo_juego.destroy
   end
 
   private
@@ -44,8 +19,4 @@ class TipoJuegosController < ApplicationController
       @tipo_juego = TipoJuego.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def tipo_juego_params
-      params.require(:tipo_juego).permit(:nombre, :descripcion)
-    end
 end

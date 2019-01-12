@@ -87,7 +87,7 @@ Rails.application.routes.draw do
     resources :frase_pnls, only: [:index, :create]
   end
 
-  resources :frase_pnls, except: [:create]
+  resources :frase_pnls, only: [:show, :destroy]
 
 ##Frases
 
@@ -95,7 +95,7 @@ Rails.application.routes.draw do
     resources :frases, only: [:index, :create]
   end
 
-  resources :frases, except: [:index, :create]
+  resources :frases, only: [:show, :destroy]
 
 ##Lecciones
 
@@ -103,7 +103,7 @@ Rails.application.routes.draw do
     resources :leccions, only: [:index, :create]
   end
 
-  resources :leccions, except: [:index, :create]
+  resources :leccions, only: [:show, :destroy, :update] #TODO:Solo se puede cambiar la semana
 
 ##Niveles-Acceso
 
@@ -131,49 +131,21 @@ Rails.application.routes.draw do
 
 ##Puntuaciones
 
-  resources :tipo_juegos, only: [] do
-    resources :puntuacions, only: [:index]
-  end
-
-  resources :leccions, only: [] do
-    resources :puntuacions, only: [:index]
-  end
-
   resources :estudiantes, only: [] do
     resources :leccions, only: [] do
       resources :tipo_juegos, only: [] do
         resources :puntuacions, only: [:create]
       end
     end
-
-    resources :puntuacions, only: [:index]
   end
 
-  resources :puntuacions, only: [:show, :update]
+  resources :puntuacions, only: [:show]
 
-##Registro-Actividades
-
-  resources :tipo_actividads, only: [] do
-    resources :registro_actividads, only: [:index]
-  end
-
-  resources :usuarios, only: [] do
-    resources :tipo_actividads, only: [] do
-      resources :registro_actividads, only: [:create]
-    end
-
-    resources :registro_actividads, only: [:index]
-  end
-
-  resources :registro_actividads, only: [:show]
-
-##Tipo-Actividades
-
-  resources :tipo_actividads, only: [:show, :index, :update]
+  get 'puntuacions/:tipo/:id/:page' => 'puntuacions#index'
 
 ##Tipo-Juegos
 
-  resources :tipo_juegos, only: [:show, :index, :update]
+  resources :tipo_juegos, only: [:show, :index]
 
 ##Tipo-Usuarios
 
@@ -181,17 +153,20 @@ Rails.application.routes.draw do
 
 ##Tutores
 
-  resources :tutors, only: [:show, :index]
+  get 'tutors/:page' => 'docentes#index'
+
+  get 'tutor/:id' => 'docentes#show'
 
 ##Usuarios
 
   resources :tipo_usuarios, only: [] do
-    resources :usuarios, only: [:index, :create]
+    resources :usuarios, only: [:create]
   end
 
-  resources :usuarios, except: [:create]
+  resources :usuarios, except: [:create, :index]
 
-  ##SocialsController
+##SocialsController
+
   resources :socials, only: [:create]
 
 ##Reporter Controllers

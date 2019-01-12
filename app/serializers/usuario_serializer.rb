@@ -17,10 +17,4 @@
 
 class UsuarioSerializer < ActiveModel::Serializer
   attributes :id, :user, :nombre, :email, :last_login, :tipo_usuario, :archivo
-
-  has_one :tutor
-  has_one :docente
-  has_many :entrada
-  has_many :registro_actividad
-  has_many :tipo_actividad , through: :registro_actividad
 end

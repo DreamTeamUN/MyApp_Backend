@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_07_203959) do
+ActiveRecord::Schema.define(version: 2019_01_08_182006) do
 
   create_table "archivo_juegos", force: :cascade do |t|
     t.integer "tipo_juego_id", null: false
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 2019_01_07_203959) do
     t.integer "semana", default: 1, null: false
     t.integer "programa_id", null: false
     t.index ["programa_id"], name: "index_leccions_on_programa_id"
+    t.index ["semana", "programa_id"], name: "index_leccions_on_semana_and_programa_id", unique: true
   end
 
   create_table "nivel_accesos", force: :cascade do |t|

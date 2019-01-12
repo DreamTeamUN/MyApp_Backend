@@ -18,4 +18,13 @@ class Leccion < ApplicationRecord
   #Validaciones
   validates :semana, numericality: { greater_than: 0 }
 
+  #Consultas
+  def self.by_programa( programa_id )
+    where("programa_id == ?", programa_id)
+  end
+
+  def self.repetido( programa_id, semana)
+    where("programa_id == ? AND semana == ?", programa_id, semana)
+  end
+
 end
