@@ -26,11 +26,12 @@ class EstudianteAulasController < ApplicationController
     else
       @estudiante_aula = EstudianteAula.new(estudiante_id: params[:estudiante_id], aula_id: params[:aula_id])
 
-    if @estudiante_aula.save
-      RegistroActividad.create(usuario_id: @estudiante_aula.estudiante.tutor.usuario_id, tipo_actividad_id: 10, ip_origen: request.remote_ip)
-      render json: @estudiante_aula, status: :created, location: @estudiante_aula
-    else
-      render json: @estudiante_aula.errors, status: :unprocessable_entity
+      if @estudiante_aula.save
+        RegistroActividad.create(usuario_id: @estudiante_aula.estudiante.tutor.usuario_id, tipo_actividad_id: 10, ip_origen: request.remote_ip)
+        render json: @estudiante_aula, status: :created, location: @estudiante_aula
+      else
+        render json: @estudiante_aula.errors, status: :unprocessable_entity
+      end
     end
   end
 

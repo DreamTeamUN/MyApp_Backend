@@ -15,11 +15,12 @@ class ArchivoJuegosController < ApplicationController
       @archivo_juego = ArchivoJuego.new(
         tipo_juego_id: params[:tipo_juego_id], frase_id: params[:frase_id], archivo_id: params[:archivo_id])
 
-    if @archivo_juego.save
-      RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 13, ip_origen: request.remote_ip)
-      render json: @archivo_juego, status: :created, location: @archivo_juego
-    else
-      render json: @archivo_juego.errors, status: :unprocessable_entity
+      if @archivo_juego.save
+        RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 13, ip_origen: request.remote_ip)
+        render json: @archivo_juego, status: :created, location: @archivo_juego
+      else
+        render json: @archivo_juego.errors, status: :unprocessable_entity
+      end
     end
   end
 

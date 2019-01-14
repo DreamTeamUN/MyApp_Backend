@@ -2,6 +2,11 @@ class UsuariosController < ApplicationController
   before_action :authenticate_usuario, only: [:index,:show, :update, :destroy]
   before_action :set_usuario, only: [:show, :update, :destroy]
 
+  # GET /usuarios
+  def index
+    render json: current_usuario, status: :ok
+  end
+
   # GET /usuarios/:id
   def show
     render json: @usuario

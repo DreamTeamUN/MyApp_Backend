@@ -153,9 +153,9 @@ Rails.application.routes.draw do
 
 ##Tutores
 
-  get 'tutors/:page' => 'docentes#index'
+  get 'tutors/:page' => 'tutors#index'
 
-  get 'tutor/:id' => 'docentes#show'
+  get 'tutor/:id' => 'tutors#show'
 
 ##Usuarios
 
@@ -163,7 +163,7 @@ Rails.application.routes.draw do
     resources :usuarios, only: [:create]
   end
 
-  resources :usuarios, except: [:create, :index]
+  resources :usuarios, except: [:create]
 
 ##SocialsController
 
