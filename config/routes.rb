@@ -147,6 +147,8 @@ Rails.application.routes.draw do
 
   resources :tipo_juegos, only: [:show, :index]
 
+  get 'juego/:tipo_juego_id/:leccion_id/:opciones/:cantidad' => 'tipo_juegos#generarJuego'
+
 ##Tipo-Usuarios
 
   resources :tipo_usuarios, only: [:show, :index]
