@@ -29,7 +29,7 @@ class TipoJuegosController < ApplicationController
 
       juegos["Juego#{completados}"] = {
         "url": archivo.archivo.ruta.url,
-        "opciones": opciones[0..cantOpciones-1],
+        "opciones": opciones[0..cantOpciones-1].shuffle,
         "correcta": frases[i].frase
       }
 
