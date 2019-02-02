@@ -124,7 +124,7 @@
                       <p style="text-align:left;">Usuario: <%= @user.user %></p>
                       <p style="text-align:left;">Nombre: <%= @user.nombre %></p>
                       <p style="text-align:left;">Correo: <%= @user.email %></p>
-                      <p style="text-align:left;">Fecha de Registro: <%= @user.created_at %></p>
+                      <p style="text-align:left;">Ultima Conexion: <%= @user.last_login %></p>
                       <p style="text-align:left;">Tipo de usuario: <%= @user.tipo_usuario.nombre %></p>
                     </div>
                   </div>
@@ -137,20 +137,33 @@
           </div>
           <!-- END: Reporte usuario -->
 
-          <!--Featured Teacher -->
+          <!--Featured -->
           <div class="movableContent">
             <table align="center" width="600" valign="middle" cellpadding="0" style='margin:0;' cellspacing="0" border="0">
               <tr>
                 <td valign="top">
                   <div class="contentEditableContainer contentTextEditable">
                     <div class="contentEditable">
-                      <h2 style="text-align:center;font-size:24px;">Mis cursos</h2>
-
-                      <h3 style="text-align:left;">Lectura</h3>
-                      <p style="text-align:left;">Avance del 75%</p>
-
-                      <h3 style="text-align:left;">Matemática</h3>
-                      <p style="text-align:left;">Avance del 23%</p>
+                      <%= case @user.usuario_id %>
+                        <%= when 1 %>
+                          <h2 style="text-align:center;font-size:24px;">Mis estudiantes</h2>
+                          <%= @user.tutor.estudiante.each do |estudiante|%>
+                            <h3 style="text-align:left;">
+                              Nombre: <%=estudiante.nombre%><br>
+                            </h3>
+                            <br>
+                          <%= end %>
+                        <%= end %>
+                        <%= when 2 %>
+                          <h2 style="text-align:center;font-size:24px;">Mis cursos</h2>
+                          <%= @user.docente.aula.each do |aula|%>
+                            <h3 style="text-align:left;">
+                              Programa: <%=aula.programa.nombre%>, estudiantes: <%=aula.estudiante.count%><br>
+                            </h3>
+                            <br>
+                          <%= end %>
+                        <%= end %>
+                      <%= end %>
                     </div>
                   </div>
                 </td>
@@ -160,7 +173,7 @@
               </tr>
             </table>
           </div>
-          <!-- END: Featured Teacher -->
+          <!-- END: Featured -->
 
 
           <!-- Section Title: Schedule-->

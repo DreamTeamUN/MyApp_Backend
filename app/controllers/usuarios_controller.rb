@@ -4,17 +4,15 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios
   def index
-    @usuarios  = current_usuario
-
-    render json: @usuarios
+    render json: current_usuario, status: :ok
   end
 
-  # GET /usuarios/1
+  # GET /usuarios/:id
   def show
     render json: @usuario
   end
 
-  # POST /usuarios
+  # POST /tipo_usuarios/:tipo_usuario_id/usuarios
   def create
     @usuario = Usuario.new(usuario_params)
     @usuario.last_login = Date.today
@@ -31,16 +29,22 @@ class UsuariosController < ApplicationController
 
         @trigger = Tutor.new(usuario_id: @usuario.id)
         text = "tutor"
+        actividad = 27
 
       when 2 #Docente
 
         @trigger = Docente.new(usuario_id: @usuario.id)
         text = "docente"
+        actividad = 28
 
       end
 
       if @trigger.save
         WelcomeMailer.with(usuario: @usuario).welcome_email.deliver
+
+        RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 26, ip_origen: request.remote_ip)
+        RegistroActividad.create(usuario_id: @usuario.id, tipo_actividad_id: actividad, ip_origen: request.remote_ip)
+
         render json: {"usuario": @usuario,"#{text}": @trigger}, status: :created, location: @usuario
       else
         @usuario.destroy
@@ -52,18 +56,20 @@ class UsuariosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /usuarios/1
+  # PATCH/PUT /usuarios/:id
   def update
-    if @usuario.update(usuario_params)
+    if @usuario.update(usuario_patch)
       render json: @usuario
     else
       render json: @usuario.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /usuarios/1
+  # DELETE /usuarios/:id
   def destroy
     @usuario.destroy
+    RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 29, ip_origen: request.remote_ip)
+    render status: :ok
   end
 
   private
@@ -75,5 +81,9 @@ class UsuariosController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def usuario_params
       params.require(:usuario).permit(:user, :password, :nombre, :email, :fecha_nacimiento)
+    end
+
+    def usuario_patch
+      params.require(:usuario).permit(:password, :nombre, :email, :fecha_nacimiento)
     end
 end

@@ -1,30 +1,41 @@
 class LeccionsController < ApplicationController
   before_action :set_leccion, only: [:show, :update, :destroy]
 
-  # GET /leccions
+  # GET /programas/:programa_id/leccions
   def index
-    @leccions = Leccion.all
+    if params[:programa_id].to_i == 0
+      @leccions = Leccion.all
+    else
+      @leccions = Leccion.by_programa(params[:programa_id])
+    end
 
     render json: @leccions
   end
 
-  # GET /leccions/1
+  # GET /leccions/:id
   def show
     render json: @leccion
   end
 
-  # POST /leccions
+  # POST /programas/:programa_id/leccions
   def create
-    @leccion = Leccion.new(leccion_params)
-
-    if @leccion.save
-      render json: @leccion, status: :created, location: @leccion
+    repetido = Leccion.repetido(params[:programa_id], params[:leccion][:semana])
+    if repetido.length > 0
+      render json: repetido, status: :im_used
     else
-      render json: @leccion.errors, status: :unprocessable_entity
+      @leccion = Leccion.new(leccion_params)
+      @leccion.programa_id = params[:programa_id]
+
+      if @leccion.save
+        RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 24, ip_origen: request.remote_ip)
+        render json: @leccion, status: :created, location: @leccion
+      else
+        render json: @leccion.errors, status: :unprocessable_entity
+      end
     end
   end
 
-  # PATCH/PUT /leccions/1
+  # PATCH/PUT /leccions/:id
   def update
     if @leccion.update(leccion_params)
       render json: @leccion
@@ -33,9 +44,11 @@ class LeccionsController < ApplicationController
     end
   end
 
-  # DELETE /leccions/1
+  # DELETE /leccions/:id
   def destroy
     @leccion.destroy
+    RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 25, ip_origen: request.remote_ip)
+    render status: :ok
   end
 
   private
@@ -46,6 +59,6 @@ class LeccionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def leccion_params
-      params.require(:leccion).permit(:semana, :programa_id)
+      params.require(:leccion).permit(:semana)
     end
 end

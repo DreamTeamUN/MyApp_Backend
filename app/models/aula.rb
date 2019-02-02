@@ -5,6 +5,8 @@
 #  id          :integer          not null, primary key
 #  docente_id  :integer
 #  programa_id :integer
+#  nombre      :string
+#  descripcion :string           default("")
 #
 
 class Aula < ApplicationRecord
@@ -16,6 +18,8 @@ class Aula < ApplicationRecord
   belongs_to :programa
 
   #Validaciones
+
+  validates :nombre, presence: true, uniqueness: true, length: { maximum: 20, minimum: 3}
 
   #Consultas
   def self.by_programa( programa_id, page )

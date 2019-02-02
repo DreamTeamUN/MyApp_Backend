@@ -15,4 +15,17 @@ class DocentePrograma < ApplicationRecord
 
   #Validaciones
 
+  #Consultas
+  def self.by_programa( programa_id, page )
+    where("programa_id == ?", programa_id).paginate(page: page, per_page: 10)
+  end
+
+  def self.by_docente( docente_id, page )
+    where("docente_id == ?", docente_id).paginate(page: page, per_page: 10)
+  end
+
+  def self.repetido( docente_id, programa_id)
+    where("docente_id == ? AND programa_id == ?", docente_id, programa_id)
+  end
+
 end

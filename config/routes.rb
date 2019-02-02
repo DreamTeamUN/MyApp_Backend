@@ -2,19 +2,21 @@ Rails.application.routes.draw do
 
 ##Archivo-Juego
 
-  resources :archivos, only: [] do
-    resources :tipo_juegos, only: [] do
-      resources :frase, only: [] do
-        resources :archivo_juegos, only: [:create, :index]
+  resources :tipo_juego, only: [] do
+    resources :frase, only: [] do
+      resources :archivo, only: [] do
+        resources :archivo_juegos, only: [:create]
       end
     end
   end
 
-  resources :archivo_juegos, except: [:create, :index]
+  resources :archivo_juegos, only: [:destroy, :show]
 
 ##Archivo
 
-  resources :archivos
+  resources :archivos, except: [:index, :update]
+
+  get 'archivos/:tipo/:id/:page' => 'archivos#index'
 
 ##Aulas
 
@@ -28,12 +30,7 @@ Rails.application.routes.draw do
 
 ##Docente-Programa
 
-  resources :docentes, only: [] do
-    resources :docente_programas, only: [:index]
-  end
-
   resources :programas, only: [] do
-    resources :docente_programas, only: [:index]
 
     resources :docentes, only: [] do
       resources :docente_programas, only: [:create]
@@ -42,9 +39,13 @@ Rails.application.routes.draw do
 
   resources :docente_programas, only: [:show, :destroy]
 
+  get 'docente_programas/:tipo/:id/:page' => 'docente_programas#index'
+
 ##Docentes
 
-  resources :docentes, only: [:index, :show]
+  get 'docentes/:page' => 'docentes#index'
+
+  get 'docente/:id' => 'docentes#show'
 
 ##Entradas
 
@@ -62,13 +63,7 @@ Rails.application.routes.draw do
 
 ##Estudiante-Aula
 
-  resources :aulas, only: [] do
-    resources :estudiante_aulas, only: [:index]
-  end
-
   resources :estudiantes, only: [] do
-    resources :estudiante_aulas, only: [:index]
-
     resources :aulas, only: [] do
       resources :estudiante_aulas, only: [:create]
     end
@@ -76,13 +71,15 @@ Rails.application.routes.draw do
 
   resources :estudiante_aulas, only: [:show, :destroy]
 
+  get 'estudiante_aulas/:tipo/:id/:page' => 'estudiante_aulas#index'
+
 ##Estudiantes
 
   resources :tutors, only: [] do
     resources :estudiantes, only: [:index, :create]
   end
 
-  resources :estudiantes, only: [:show]
+  resources :estudiantes, except: [:index, :create]
 
 ##FrasesPNL
 
@@ -90,7 +87,7 @@ Rails.application.routes.draw do
     resources :frase_pnls, only: [:index, :create]
   end
 
-  resources :frase_pnls, except: [:create]
+  resources :frase_pnls, only: [:show, :destroy]
 
 ##Frases
 
@@ -98,7 +95,7 @@ Rails.application.routes.draw do
     resources :frases, only: [:index, :create]
   end
 
-  resources :frases, except: [:index, :create]
+  resources :frases, only: [:show, :destroy]
 
 ##Lecciones
 
@@ -106,7 +103,7 @@ Rails.application.routes.draw do
     resources :leccions, only: [:index, :create]
   end
 
-  resources :leccions, except: [:index, :create]
+  resources :leccions, only: [:show, :destroy, :update] #TODO:Solo se puede cambiar la semana
 
 ##Niveles-Acceso
 
@@ -134,49 +131,23 @@ Rails.application.routes.draw do
 
 ##Puntuaciones
 
-  resources :tipo_juegos, only: [] do
-    resources :puntuacions, only: [:index]
-  end
-
-  resources :leccions, only: [] do
-    resources :puntuacions, only: [:index]
-  end
-
   resources :estudiantes, only: [] do
     resources :leccions, only: [] do
       resources :tipo_juegos, only: [] do
         resources :puntuacions, only: [:create]
       end
     end
-
-    resources :puntuacions, only: [:index]
   end
 
-  resources :puntuacions, only: [:show, :update]
+  resources :puntuacions, only: [:show]
 
-##Registro-Actividades
-
-  resources :tipo_actividads, only: [] do
-    resources :registro_actividads, only: [:index]
-  end
-
-  resources :usuarios, only: [] do
-    resources :tipo_actividads, only: [] do
-      resources :registro_actividads, only: [:create]
-    end
-
-    resources :registro_actividads, only: [:index]
-  end
-
-  resources :registro_actividads, only: [:show]
-
-##Tipo-Actividades
-
-  resources :tipo_actividads, only: [:show, :index, :update]
+  get 'puntuacions/:tipo/:id/:page' => 'puntuacions#index'
 
 ##Tipo-Juegos
 
-  resources :tipo_juegos, only: [:show, :index, :update]
+  resources :tipo_juegos, only: [:show, :index]
+
+  get 'juego/:tipo_juego_id/:leccion_id/:opciones/:cantidad' => 'tipo_juegos#generarJuego'
 
 ##Tipo-Usuarios
 
@@ -184,17 +155,20 @@ Rails.application.routes.draw do
 
 ##Tutores
 
-  resources :tutors, only: [:show, :index]
+  get 'tutors/:page' => 'tutors#index'
+
+  get 'tutor/:id' => 'tutors#show'
 
 ##Usuarios
 
   resources :tipo_usuarios, only: [] do
-    resources :usuarios, only: [:index, :create]
+    resources :usuarios, only: [:create]
   end
 
   resources :usuarios, except: [:create]
 
-  ##SocialsController
+##SocialsController
+
   resources :socials, only: [:create]
 
 ##Reporter Controllers

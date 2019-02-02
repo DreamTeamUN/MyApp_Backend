@@ -5,6 +5,8 @@
 #  id          :integer          not null, primary key
 #  docente_id  :integer
 #  programa_id :integer
+#  nombre      :string
+#  descripcion :string           default("")
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -1,9 +1,16 @@
 class ArchivosController < ApplicationController
   before_action :set_archivo, only: [:show, :update, :destroy]
 
-  # GET /archivos
+  # GET /archivos/:tipo/:id/:page
   def index
-    @archivos = Archivo.all
+    case params[:tipo]
+    when "1"
+      @archivos = Archivo.by_tipo_archivo(params[:id], params[:page])
+    when "2"
+      @archivos = ArchivoJuego.by_frase(params[:id], params[:page])
+    when "3"
+      @archivos = ArchivoJuego.by_tipo_juego(params[:id], params[:page])
+    end
 
     render json: @archivos
   end
@@ -32,16 +39,8 @@ class ArchivosController < ApplicationController
 
 
     if @archivo.save
+      RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 15, ip_origen: request.remote_ip)
       render json: @archivo, status: :created, location: @archivo
-    else
-      render json: @archivo.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /archivos/1
-  def update
-    if @archivo.update(archivo_params)
-      render json: @archivo
     else
       render json: @archivo.errors, status: :unprocessable_entity
     end
@@ -50,6 +49,8 @@ class ArchivosController < ApplicationController
   # DELETE /archivos/1
   def destroy
     @archivo.destroy
+    RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 16, ip_origen: request.remote_ip)
+    render status: :ok
   end
 
   private

@@ -14,7 +14,8 @@ class SocialsController < ApplicationController
       if @user == nil
         p = Faker::Internet.password(8)
         @user = Usuario.create(user: params["name"],email: params["email"],
-          password: p, password_confirmation: p, nombre: params["name"], tipo_usuario_id: 1 )
+          password: p, password_confirmation: p, nombre: params["name"], tipo_usuario_id: 1, last_login: Date.today )
+          RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 26, ip_origen: request.remote_ip)
           if @user.save
             knock_token = Knock::AuthToken.new payload: { sub: @user.id }
             render json:  knock_token

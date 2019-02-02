@@ -16,12 +16,12 @@ class EntradasController < ApplicationController
     render json: @entradas
   end
 
-  # GET /entradas/1
+  # GET /entradas/:id
   def show
     render json: @entrada
   end
 
-  # POST /entradas
+  # POST /usuarios/:usuario_id/entradas/:entrada_id/entradas
   def create
 
     padre = Entrada.find(params[:entrada_id])
@@ -37,6 +37,10 @@ class EntradasController < ApplicationController
     end
 
     if @entrada.save
+      RegistroActividad.create(usuario_id: params[:usuario_id], tipo_actividad_id: 5, ip_origen: request.remote_ip)
+      if params[:publicado]
+        RegistroActividad.create(usuario_id: params[:usuario_id], tipo_actividad_id: 6, ip_origen: request.remote_ip)
+      end
       render json: @entrada, status: :created, location: @entrada
     else
       render json: @entrada.errors, status: :unprocessable_entity
@@ -44,9 +48,12 @@ class EntradasController < ApplicationController
 
   end
 
-  # PATCH/PUT /entradas/1
+  # PATCH/PUT /entradas/:id
   def update
-    if @entrada.update(entrada_params)
+    if @entrada.update(entrada_patch)
+      if params[:publicado]
+        RegistroActividad.create(usuario_id: @entrada.usuario_id, tipo_actividad_id: 6, ip_origen: request.remote_ip)
+      end
       render json: @entrada
     else
       render json: @entrada.errors, status: :unprocessable_entity
@@ -56,6 +63,8 @@ class EntradasController < ApplicationController
   # DELETE /entradas/1
   def destroy
     @entrada.destroy
+    RegistroActividad.create(usuario_id: @entrada.usuario_id, tipo_actividad_id: 19, ip_origen: request.remote_ip)
+    render status: :ok
   end
 
   private
@@ -67,5 +76,9 @@ class EntradasController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def entrada_params
       params.require(:entrada).permit(:nivel_acceso_id, :titulo, :resumen, :texto, :abierto, :publicado)
+    end
+
+    def entrada_patch
+      params.require(:entrada).permit(:nivel_acceso_id, :resumen, :texto, :abierto, :publicado)
     end
 end

@@ -18,6 +18,7 @@ class ProgresosController < ApplicationController
     @progreso = Progreso.new(progreso_params)
 
     if @progreso.save
+      #RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 22, ip_origen: request.remote_ip)
       render json: @progreso, status: :created, location: @progreso
     else
       render json: @progreso.errors, status: :unprocessable_entity

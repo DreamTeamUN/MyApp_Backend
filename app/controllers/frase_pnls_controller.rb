@@ -1,41 +1,41 @@
 class FrasePnlsController < ApplicationController
   before_action :set_frase_pnl, only: [:show, :update, :destroy]
 
-  # GET /frase_pnls
+  # GET /tipo_usuarios/:tipo_usuario_id/frase_pnls
   def index
-    @frase_pnls = FrasePnl.by_tipo_usuario(params[:tipo_usuario_id])
 
+    if params[:tipo_usuario_id].to_i == 0
+      @frase_pnls = FrasePnl.all
+    else
+      @frase_pnls = FrasePnl.by_tipo_usuario(params[:tipo_usuario_id])
+    end
     render json: @frase_pnls
+
   end
 
-  # GET /frase_pnls/1
+  # GET /frase_pnls/:id
   def show
     render json: @frase_pnl
   end
 
-  # POST /frase_pnls
+  # POST /tipo_usuarios/:tipo_usuario_id/frase_pnls
   def create
     @frase_pnl = FrasePnl.new(frase_pnl_params)
+    @frase_pnl.tipo_usuario_id = params[:tipo_usuario_id]
 
     if @frase_pnl.save
+      RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 22, ip_origen: request.remote_ip)
       render json: @frase_pnl, status: :created, location: @frase_pnl
     else
       render json: @frase_pnl.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /frase_pnls/1
-  def update
-    if @frase_pnl.update(frase_pnl_params)
-      render json: @frase_pnl
-    else
-      render json: @frase_pnl.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /frase_pnls/1
+  # DELETE /frase_pnls/:id
   def destroy
+    RegistroActividad.create(usuario_id: 0, tipo_actividad_id: 23, ip_origen: request.remote_ip)
     @frase_pnl.destroy
+    render status: :ok
   end
 
   private

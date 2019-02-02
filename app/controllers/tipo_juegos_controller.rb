@@ -8,34 +8,36 @@ class TipoJuegosController < ApplicationController
     render json: @tipo_juegos
   end
 
-  # GET /tipo_juegos/1
+  # GET /tipo_juegos/:id
   def show
     render json: @tipo_juego
   end
 
-  # POST /tipo_juegos
-  def create
-    @tipo_juego = TipoJuego.new(tipo_juego_params)
+  #GET juego/:tipo_juego_id/:leccion_id/:opciones/:cantidad
+  def generarJuego
+    frases = Leccion.find(params[:leccion_id]).frase.shuffle
+    juegos = {}
+    i = completados = 0
+    while completados < params[:cantidad].to_i
 
-    if @tipo_juego.save
-      render json: @tipo_juego, status: :created, location: @tipo_juego
-    else
-      render json: @tipo_juego.errors, status: :unprocessable_entity
+      archivo = ArchivoJuego.getRandom(1, params[:tipo_juego_id])
+      cantOpciones = [params[:opciones].to_i, frases.length].min
+      opciones = frases.clone
+      opciones.delete(frases[i])
+      opciones.shuffle
+      opciones.insert(0, frases[i])
+
+      juegos["Juego#{completados}"] = {
+        "url": archivo.archivo.ruta.url,
+        "opciones": opciones[0..cantOpciones-1].shuffle,
+        "correcta": frases[i].frase
+      }
+
+      i = (i+1)%frases.length
+      completados += 1
     end
-  end
 
-  # PATCH/PUT /tipo_juegos/1
-  def update
-    if @tipo_juego.update(tipo_juego_params)
-      render json: @tipo_juego
-    else
-      render json: @tipo_juego.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /tipo_juegos/1
-  def destroy
-    @tipo_juego.destroy
+    render json: juegos
   end
 
   private
@@ -44,8 +46,4 @@ class TipoJuegosController < ApplicationController
       @tipo_juego = TipoJuego.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def tipo_juego_params
-      params.require(:tipo_juego).permit(:nombre, :descripcion)
-    end
 end

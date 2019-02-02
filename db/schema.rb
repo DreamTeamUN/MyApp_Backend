@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_01_162518) do
+ActiveRecord::Schema.define(version: 2019_01_08_182006) do
 
   create_table "archivo_juegos", force: :cascade do |t|
     t.integer "tipo_juego_id", null: false
     t.integer "archivo_id", null: false
     t.integer "frase_id"
+    t.index ["archivo_id", "frase_id", "tipo_juego_id"], name: "archivo_frase_tipo_index", unique: true
     t.index ["archivo_id"], name: "index_archivo_juegos_on_archivo_id"
     t.index ["frase_id"], name: "index_archivo_juegos_on_frase_id"
     t.index ["tipo_juego_id"], name: "index_archivo_juegos_on_tipo_juego_id"
@@ -31,7 +32,10 @@ ActiveRecord::Schema.define(version: 2018_11_01_162518) do
   create_table "aulas", force: :cascade do |t|
     t.integer "docente_id"
     t.integer "programa_id"
+    t.string "nombre"
+    t.string "descripcion", default: ""
     t.index ["docente_id"], name: "index_aulas_on_docente_id"
+    t.index ["nombre"], name: "index_aulas_on_nombre", unique: true
     t.index ["programa_id"], name: "index_aulas_on_programa_id"
   end
 
@@ -103,6 +107,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_162518) do
     t.integer "semana", default: 1, null: false
     t.integer "programa_id", null: false
     t.index ["programa_id"], name: "index_leccions_on_programa_id"
+    t.index ["semana", "programa_id"], name: "index_leccions_on_semana_and_programa_id", unique: true
   end
 
   create_table "nivel_accesos", force: :cascade do |t|
