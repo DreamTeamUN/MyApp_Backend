@@ -32,4 +32,8 @@ class ArchivoJuego < ApplicationRecord
     where("tipo_juego_id == ? AND archivo_id == ? AND frase_id == ?", tipo_juego_id, archivo_id, frase_id)
   end
 
+  def self.getRandom( frase_id , tipo_juego_id )
+    where("frase_id == ? AND tipo_juego_id == ?", frase_id, tipo_juego_id).sample
+  end
+
 end
